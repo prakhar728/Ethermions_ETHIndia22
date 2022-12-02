@@ -1,0 +1,49 @@
+.fContainer {
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+}
+.footer {
+  background-color: #161418;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 2.5rem;
+}
+.footer .conterms li {
+  list-style: none;
+}
+
+.conterms {
+  background-color: #161418;
+  display: flex;
+}
+.conterms li {
+  margin: 10px;
+  padding: 8px;
+  background-color: #161418;
+}
+
+.socialMedia {
+  display: flex;
+  background-color: #161418;
+}
+
+.socialMedia div {
+  margin: 4px;
+  padding: 8px;
+  background-color: #161418;
+}
+
+.sicons:hover {
+  color: #960096;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 765px) {
+  .footer {
+    flex-direction: column;
+  }
+}

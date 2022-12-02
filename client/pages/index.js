@@ -1,5 +1,9 @@
-import styles from "../styles/Home.module.css";
-import { connectionButton } from "../components/Header.data";
+import Layout from "../components/Layout";
+
 export default function Home() {
-  return <div>{connectionButton()}</div>;
+  return (
+    <div>
+      <Layout></Layout>
+    </div>
+  );
 }

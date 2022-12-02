@@ -1,0 +1,20 @@
+.aContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #202020;
+  width: 100%;
+}
+.D {
+  text-align: center;
+  margin: 15px 48px;
+  padding: 10px 35px;
+  background-color: #202020;
+}
+.D p {
+  padding: 5px;
+  background-color: #202020;
+}
+.aContainer h4 {
+  background-color: #202020;
+}
