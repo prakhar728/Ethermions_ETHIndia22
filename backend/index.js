@@ -4,6 +4,9 @@ const cors = require("cors");
 
 const connectToMongo = require("./config/db");
 
+const mintnft = require("./routes/mintnft");
+
+
 const app = express();
 const PORT = process.env.PORT;
 
@@ -13,6 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 connectToMongo();
+
+app.use("/api",mintnft);
 
 
 app.listen(PORT, () => {
