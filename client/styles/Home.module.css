@@ -2,7 +2,6 @@
   padding: 0 0rem;
 }
 
-
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -13,7 +12,7 @@
   align-items: center;
 }
 
-.navbarcontainer{
+.navbarcontainer {
   width: 100vw;
   display: flex;
   position: fixed;

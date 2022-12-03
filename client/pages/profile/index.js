@@ -1,41 +1,38 @@
-import React, { useState } from "react"
-import Link from "next/link"
-import { BiWalletAlt } from "react-icons/bi"
-import Layout from "../../components/Layout"
-import { MdOutlineLocalOffer } from "react-icons/md"
-import { BsCashCoin, BsHddStack } from "react-icons/bs"
-import Profile from "../../components/profile/Profile"
-import Loan from "../../components/profile/Loan"
-import Lent from "../../components/profile/Lent"
-import { FaUser } from "react-icons/fa"
-import Offer from "../../components/profile/Offer"
+import React, { useState } from "react";
+import Link from "next/link";
+import { BiWalletAlt } from "react-icons/bi";
+import Layout from "../../components/Layout";
+import { MdOutlineLocalOffer } from "react-icons/md";
+import { BsCashCoin } from "react-icons/bs";
+import Profile from "../../components/profile/Profile";
+import Loan from "../../components/profile/Loan";
+import Lent from "../../components/profile/Lent";
+import { FaUser } from "react-icons/fa";
+import Offer from "../../components/profile/Offer";
 
 const tabs = [
   {
     name: "MY PROFILE",
-    icon: <FaUser size={20} className="icons" />
+    icon: <FaUser size={20} className="icons" />,
   },
   {
     name: "MY LENT",
-    icon: <BiWalletAlt size={20} className="icons" />
+    icon: <BiWalletAlt size={20} className="icons" />,
   },
   {
     name: "MY LOAN",
-    icon: <BsCashCoin size={20} className="icons" />
+    icon: <BsCashCoin size={20} className="icons" />,
   },
   {
     name: "MY OFFER",
-    icon: <MdOutlineLocalOffer size={20} className="icons" />
-  }
-  // {
-  //   name: "MY VAULT",
-  //   icon: <BsHddStack size={20} className="icons" />,
-  // },
-]
+    icon: <MdOutlineLocalOffer size={20} className="icons" />,
+  },
+
+];
 
 function index() {
-  const [tab, setTab] = useState("MY PROFILE")
-  console.log(tab)
+  const [tab, setTab] = useState("MY PROFILE");
+  console.log(tab);
   return (
     <Layout>
       <div className="profileContainer">
@@ -79,7 +76,7 @@ function index() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
-export default index
+export default index;
