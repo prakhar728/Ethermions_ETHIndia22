@@ -1,13 +1,14 @@
 const nftwallet = require("../models/Nft");
 const router = require("express").Router();
 const ethers = require("ethers");
+const axios = require("axios");
 const fetch = require("node-fetch");
 
 router.post(
   "/:contract_address/:wallet_address/importnft",
   async (req, res) => {
     try {
-      const { token_id } = req.body;
+      const { token_id, title, description, image } = req.body;
       const { contract_address, wallet_address } = req.params;
 
       if (!wallet_address)
@@ -17,76 +18,30 @@ router.post(
 
       var contractABI;
       // Fetch ABI
-      console.log( new URL(`api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY}`,'https://api-testnet.polygonscan.com/') )
-      fetch(
-       new URL(`https://api-testnet.polygonscan.com/api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY}`) 
-      )
-        .then(async (resp1) => {
-          const provider = ethers.getDefaultProvider(
-            `https://polygon-mumbai.g.alchemy.com/v2/${process.env.alchemy}`
-          );
-          contractABI = (await resp1.json()).result;
-          const currentWallet = new ethers.Wallet(
-            process.env.private_key,
-            provider
-          );
 
-          const currentContract = new ethers.Contract(
-            contract_address,
-            contractABI,
-            currentWallet
-          );
-          const ownerOfNft = await currentContract.ownerOf(token_id);
-          if (ownerOfNft != wallet_address)
-            return res.status(400).json({ err: "Only owners can import nft!" });
+      const nft = await nftwallet.findOne({
+        $and: [{ contract_address }, { token_id }],
+      });
+      if (nft) {
+        return res.status(400).send({ message: "Nft already exists" });
+      }
 
-          const tokenuri = await currentContract.tokenURI(token_id);
-          return tokenuri;
+      await nftwallet
+        .create({
+          title,
+          description,
+          image,
+          wallet_address,
+          contract_address,
+          token_id,
+          status: "open",
         })
-        .catch((err) => {
-          return res.status(400).json({
-            status: false,
-            message: "ERRRRRRRRRRRRR, Again same error",
+        .then(async () => {
+          const allNFT = await nftwallet.find({ wallet_address });
+          return res.status(200).json({
+            message: `Successfully Imported NFT with ${imp.title} & ${contract_address}`,
+            nfts: allNFT,
           });
-        })
-        .then(async (res2) => {
-          // console.log(await resp);
-          const importedNFT = await res2;
-
-          const nft = await nftwallet.findOne({
-            $and: [{ contract_address }, { token_id }],
-          });
-          if (nft) {
-            return res.status(400).send({ message: "Nft already exists" });
-          }
-
-          fetch(importedNFT)
-            .then(async (res3) => {
-              const imp = await res3.json();
-              await nftwallet
-                .create({
-                  title: imp.title,
-                  description: imp.description,
-                  image: imp.image,
-                  wallet_address,
-                  contract_address,
-                  token_id,
-                  status: "open",
-                })
-                .then(async () => {
-                  const allNFT = await nftwallet.find({ wallet_address });
-                  return res.status(200).json({
-                    message: `Successfully Imported NFT with ${imp.title} & ${contract_address}`,
-                    nfts: allNFT,
-                  });
-                });
-            })
-            .catch((err) => {
-              console.log(err);
-              return res
-                .status(400)
-                .json({ status: false, message: err.message });
-            });
         });
     } catch (error) {
       console.log(error.message);
