@@ -1,3 +1,4 @@
 /client/node_modules
 /client/.next
 /client/out
+/client/package-lock.json
