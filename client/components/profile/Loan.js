@@ -54,8 +54,8 @@ function Loan() {
             loading ? (
               <Loader />
             ) : listedForLoans ? (
-              listedForLoans.nft?.map((item) => (
-                <div className="nftComponent">
+              listedForLoans.nft?.map((item,i) => (
+                <div className="nftComponent" key={1}>
                   <Card
                     lender_address={item.lender_address}
                     borrower_address={item.borrower_address}
@@ -75,8 +75,8 @@ function Loan() {
             loading ? (
               <Loader />
             ) : activeLoans ? (
-              activeLoans.nft?.map((item) => (
-                <div className="nftComponent">
+              activeLoans?.map((item,i) => (
+                <div className="nftComponent" key={i}>
                   <Card
                     lender_address={item.lender_address}
                     borrower_address={item.borrower_address}
