@@ -10,10 +10,10 @@ async function main() {
   
 
   const LenderBorrower = await hre.ethers.getContractFactory("LenderBorrower");
-  const lenderborrower = await Lock.deploy();
+  const lenderborrower = await LenderBorrower.deploy();
 
   await lenderborrower.deployed();
-  saveFiles(lock,"LenderBorrower");
+  saveFiles(lenderborrower,"LenderBorrower");
   console.log(
     `LenderBorrower Contract deployed to ${lenderborrower.address}`
   );
