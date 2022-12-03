@@ -49,11 +49,32 @@ export const getMyLendings = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const walletAddress = thunkAPI.getState().navbar.walletAddress
-      const response = await axios.get(
-        `${process.env.API_DOMAIN}/${walletAddress}/mylentnft`
-      )
-      console.log("response", response)
-      return response.data
+      // const response = await axios.get(
+      //   `${process.env.API_DOMAIN}/${walletAddress}/mylentnft`
+      // )
+      // console.log("response", response)
+      // return response.data
+      const bn = await instances.returnCurrentProposalId()
+      console.log(bn.toNumber())
+      const proposalHolder = []
+      for (var i = 1; i <= bn.toNumber(); i++) {
+        const currentProposalData = await instances.borrowRequests(i)
+        if (
+          currentProposalData[0] == walletAddress         )
+          //add to check status too!
+          {
+          const data = {
+            borrower_address: currentProposalData[0],
+            amount: currentProposalData[1].toNumber(),
+            roi: currentProposalData[2].toNumber(),
+            repay: currentProposalData[3].toNumber(),
+            proposalid: currentProposalData[4].toNumber(),
+            nftURI:`https://testnets.opensea.io/assets/mumbai/${currentProposalData[8]}/${currentProposalData[9]}`,
+            whenBorrowed:currentProposalData[7].toNumber(),
+          }
+          proposalHolder.push(data)
+        }
+      }
     } catch (err) {
       thunkAPI.dispatch(setError(err.response?.data?.message))
       return thunkAPI.rejectWithValue(err.response?.data?.message)

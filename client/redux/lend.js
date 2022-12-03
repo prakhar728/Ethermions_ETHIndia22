@@ -40,12 +40,39 @@ export const lendNft = createAsyncThunk(
 
 export const getBorrowedNfts = createAsyncThunk(
   "lend/getBorrowedNfts",
-  async (acc) => {
+  async (acc, thunkAPI) => {
+    // try {
+    //   const response = await axios.get(
+    //     `${process.env.API_DOMAIN}/${acc}/lendnft`
+    //   )
+    //   return response.data
+    // } catch (err) {
+    //   console.log(err)
+    // }
     try {
-      const response = await axios.get(
-        `${process.env.API_DOMAIN}/${acc}/lendnft`
-      )
-      return response.data
+      const { instances, walletAddress } = thunkAPI.getState().navbar
+      const bn = await instances.returnCurrentProposalId()
+      console.log(bn.toNumber())
+      const proposalHolder = []
+      for (var i = 1; i <= bn.toNumber(); i++) {
+        const currentProposalData = await instances.borrowRequests(i)
+        if (
+          currentProposalData[0] != walletAddress &&
+          currentProposalData["currentStatus"] == 0
+        ){
+          const data = {
+            borrower_address: currentProposalData[0],
+            amount: currentProposalData[1].toNumber(),
+            roi: currentProposalData[2].toNumber(),
+            repay: currentProposalData[3].toNumber(),
+            proposalid: currentProposalData[4].toNumber(),
+            nftURI:`https://testnets.opensea.io/assets/mumbai/${currentProposalData[8]}/${currentProposalData[9]}`
+          }
+          proposalHolder.push(data)
+        }
+      }
+      console.log(proposalHolder)
+      return proposalHolder
     } catch (err) {
       console.log(err)
     }

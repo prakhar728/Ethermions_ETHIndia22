@@ -27,7 +27,9 @@ const index = () => {
   const storage = new Web3Storage({ token: token })
 
   const { loading } = useSelector((state) => state.borrow)
-  const { instances, walletAddress } = useSelector((state) => state.navbar)
+  const { walletAddress, nft_contract_address } = useSelector(
+    (state) => state.navbar
+  )
 
   const handleChange = (e) => {
     setData({
@@ -72,16 +74,20 @@ const index = () => {
             console.log("minted on Blockchain", response)
             const ti = parseInt(JSON.parse(response?.data?.result).hex, 16)
             console.log(ti)
-            setData({
-              ...data,
-              contract_address: "0x5454",
-              tokenId: ti - 1
-            })
-            setLocalLoading(false)
-            dispatch(mintNft(data))
+            dispatch(
+              mintNft({
+                ...data,
+                contract_address: nft_contract_address,
+                token_id: ti - 1
+              })
+            )
               .unwrap()
               .then(() => {
+                setLocalLoading(false)
                 dispatch(setSuccess("NFT minted Successfully!"))
+              })
+              .catch((err) => {
+                setLocalLoading(false)
               })
           })
           .catch((error) => {
@@ -98,7 +104,7 @@ const index = () => {
     // console.log("data ipfs link: ", dataIpfs)
   }
 
-  const nftUpload = async (e) => {
+  const nftUpload = (e) => {
     e.preventDefault()
     setLocalLoading(true)
     // ipfs
@@ -109,21 +115,22 @@ const index = () => {
       .put(nFile)
       .then((res) => {
         console.log(res)
+        setLocalLoading(false)
         setData({
           ...data,
           image: `https://ipfs.io/ipfs/${res}/${nFile[0].name}`
         })
-        setLocalLoading(false)
       })
       .catch((err) => {
-        dispatch(setError(err.message))
         setLocalLoading(false)
+        dispatch(setError(err.message))
       })
     // console.log(rootCID)
     // console.log(nFile[0].name)
     // console.log(`https://ipfs.io/ipfs/${rootCID}/${nFile[0].name}`)
 
     // createFundraiser(`https://ipfs.io/ipfs/${result.path}`);
+
     console.log(data.image)
   }
 
