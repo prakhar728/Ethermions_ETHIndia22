@@ -54,7 +54,7 @@ const Card = ({
     console.log(contract_address)
     axios
       .get(
-        `https://api-testnet.polygonscan.com/api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY}`
+        `https://api-testnet.polygonscan.com/api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY_POLYGON}`
       )
       .then(async (res) => {
         console.log("contract ABI", res?.data?.result)
@@ -65,36 +65,45 @@ const Card = ({
           contractABI,
           signer
         )
-        console.log("han idhar dekh", await currentContract.getApproved(token_id))
-        await await currentContract.approve(LB_contract_address, token_id)
+        console.log(
+          (await currentContract.getApproved(token_id)) == LB_contract_address
+        )
+        if (
+          (await currentContract.getApproved(token_id)) != LB_contract_address
+        ) {
+          console.log(token_id)
+          console.log(
+            "han idhar dekh",
+            await currentContract.getApproved(token_id)
+          )
+          await (
+            await currentContract.approve(LB_contract_address, token_id )
+          ).wait()
+        }
+        try {
+          await (
+            await instances.startBorrowProposal(
+              data.amount,
+              data.roi,
+              data.repay,
+              contract_address,
+              token_id
+            )
+          ).wait()
+
+          dispatch(borrowNft(sendData))
+            .unwrap()
+            .then((response) => {
+              setIsModal(!isModal)
+              dispatch(setSuccess("NFT listed Successfully!"))
+            })
+        } catch (err) {
+          console.log("Failed to start a proposal", err)
+        }
       })
       .catch((err) => {
         console.error("Permission", err)
       })
-
-    try {
-      await (
-        await instances.startBorrowProposal(
-          data.amount,
-          data.roi,
-          data.repay,
-          contract_address,
-          token_id,
-          {
-            gasLimit: 100000
-          }
-        )
-      ).wait()
-
-      dispatch(borrowNft(sendData))
-        .unwrap()
-        .then((response) => {
-          setIsModal(!isModal)
-          dispatch(setSuccess("NFT listed Successfully!"))
-        })
-    } catch (err) {
-      console.log("Failed to start a proposal", err)
-    }
   }
   // console.log("in card comp", message)
   // console.log(data)
