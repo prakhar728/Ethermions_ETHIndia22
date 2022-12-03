@@ -6,46 +6,29 @@ import { BsShare } from "react-icons/bs";
 import profile from "../../assets/images/ApesNft.jpg";
 import * as ethers from "ethers";
 import { useState } from "react";
+import Loader from "../Loader";
+import { useSelector } from "react-redux";
 
 function Profile() {
   const { address } = useAccount();
   const [name, setName] = useState("");
   const [avtr, setAvtr] = useState("");
 
-  const provider = new ethers.getDefaultProvider(
-    "https://eth-mainnet.g.alchemy.com/v2/_06u4FJJGukQ9HntHpYBKifzcfhOYu5x"
-  );
-
-  const ens = async () => {
-    await provider
-      .lookupAddress("0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045")
-      .then((res) => {
-        setName(res);
-      });
-  };
-
-  const avatar = async () => {
-    await provider
-      .getAvatar("0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045")
-      .then((res) => setAvtr(res));
-  };
-
-  avatar();
-  ens();
+    const { ensName, ensImg } = useSelector(state=>state.ens)
 
   return (
     <>
       <div className="detailContainer">
-        <Image
-          src={avtr}
-          alt=""
-          className="profileImage"
-          width={200}
-          height={200}
-        />
+          <Image
+            src={ensImg}
+            alt=""
+            className="profileImage"
+            width={200}
+            height={200}
+          />
         <div className="personal">
           <div className="nameaddress">
-            {name === null || undefined ? <h2>Unnnamed</h2> : name}
+            {ensName === null || undefined ? <h2>Unnnamed</h2> : ensName}
             <h5>
               {address?.slice(0, 7)}....{address?.slice(32, 37)}
             </h5>
