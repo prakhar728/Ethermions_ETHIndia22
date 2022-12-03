@@ -1,0 +1,70 @@
+.ldContainer{
+    margin: 20px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ldFirstDiv{
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.ldImgDiv{
+    margin: 0px 10px;
+}
+
+.ldText{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.ldTextDivs{
+    display: flex;
+}
+
+.ldTextbox{
+    margin: 0px 10px;
+}
+
+.ldTextbox div{
+    margin-top: -15px;
+}
+
+.ldInfoDiv{
+    margin: 10px 10px;
+    width: 320px;
+}
+
+.ldImg{
+    border-radius: 20px;
+}
+
+.ldlinks{
+    width: 100%;
+    margin: 5px 0px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ldIcons{
+    color: #9925ad;
+    margin: 0px 5px;
+}
+
+.ldSecondDiv{
+    width: 30%;
+    height: 100%;
+    background-color: #111111;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.ldbtn{
+    margin: 15px 0px;
+}

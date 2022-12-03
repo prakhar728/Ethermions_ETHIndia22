@@ -1,0 +1,28 @@
+.Bcontainer {
+  padding-top: 30px;
+}
+.headerStack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px;
+}
+.header {
+  margin: 0px 5px;
+}
+.vault {
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.vaultItem {
+  margin: 15px;
+}
+
+.btnVault {
+  padding: 10px 30px;
+  border-radius: 45px;
+  background-color: #000;
+  border-color: #000;
+}
