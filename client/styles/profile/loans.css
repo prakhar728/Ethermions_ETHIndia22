@@ -1,0 +1,22 @@
+.mainLoanContainer {
+  background-color: #0e0d17;
+  padding: 15px 2rem;
+}
+.loanContainer {
+  /* display: flex; */
+  align-items: center;
+  justify-content: space-between;
+}
+.btnloan {
+  margin: 5px;
+}
+.btnloanContainer {
+  display: flex;
+}
+.loanDetailContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.nftComponent {
+  margin: 10px;
+}

@@ -1,0 +1,24 @@
+.offerContainer {
+  background-color: #0e0d17;
+  border-radius: 30px;
+  margin: 20px 2rem;
+}
+.offerNav {
+  display: flex;
+}
+.offerNav h4 {
+  margin: 15px;
+  padding: 12px;
+}
+.offerNav h4:hover {
+  cursor: pointer;
+  color: #960096;
+}
+.openOffer {
+  width: 100%;
+  padding: 90px;
+  text-align: center;
+}
+.openOffer h5 {
+  color: gray;
+}

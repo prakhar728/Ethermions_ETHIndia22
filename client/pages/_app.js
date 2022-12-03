@@ -3,13 +3,23 @@ import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { wrapper } from "../redux/store";
-
-// styles import
 import "../styles/globals.css";
-import "../styles/navbar.css";
-import "../styles/homeBg.css";
-import "../styles/profile/profile.css";
 import "@rainbow-me/rainbowkit/styles.css";
+import "../styles/navbar.css";
+import "../styles/globals.css";
+import "../styles/lend/lend.css";
+import "../styles/borrow/borrow.css";
+import "../styles/borrow/vault.css";
+import "../styles/borrow/card.css";
+import "../styles/lend/lendDetails.css";
+import "../styles/mint/mintform.css";
+import "../styles/login.css";
+import "../styles/profile/profile.css";
+import "../styles/profile/loans.css";
+import "../styles/profile/offer.css";
+import "../styles/profile/profileCard.css";
+import "../styles/modal.css";
+import "../styles/homeBg.css";
 
 const { chains, provider } = configureChains(
   [
