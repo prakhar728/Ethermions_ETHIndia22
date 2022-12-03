@@ -3,9 +3,11 @@ import apenft from "../../assets/images/apenft.jpeg";
 import { FaEthereum } from "react-icons/fa";
 import Modal from "../Modal";
 import Image from "next/image";
-// import Link from "next/link";
-// import SiEthiopianairlines from "react-icons/si";
-// import { GiAtSea } from "react-icons/gi";
+import Link from "next/link";
+import SiEthiopianairlines from "react-icons/si";
+import { GiAtSea } from "react-icons/gi";
+// import Error from "../Error";
+// import Loader from "../Loader";
 
 const ProfileCard = ({
   title,

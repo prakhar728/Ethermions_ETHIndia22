@@ -7,6 +7,7 @@ import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import "../styles/navbar.css";
 import "../styles/globals.css";
+import "../styles/homeBg.css";
 import "../styles/lend/lend.css";
 import "../styles/borrow/borrow.css";
 import "../styles/borrow/vault.css";
@@ -19,7 +20,6 @@ import "../styles/profile/loans.css";
 import "../styles/profile/offer.css";
 import "../styles/profile/profileCard.css";
 import "../styles/modal.css";
-import "../styles/homeBg.css";
 
 const { chains, provider } = configureChains(
   [

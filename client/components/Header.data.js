@@ -6,7 +6,8 @@ export function connectionButton(ensName) {
     "https://eth-mainnet.g.alchemy.com/v2/_06u4FJJGukQ9HntHpYBKifzcfhOYu5x"
   );
 
-  //   const ENSInstance = new ENS();
+  // const ENSInstance = new ENS();
+
   const ens = async () =>
     await provider.resolveName("vitalik.eth").then((result) => {
       return result;

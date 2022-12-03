@@ -4,6 +4,7 @@ import { FaEthereum } from "react-icons/fa";
 import Image from "next/image";
 
 const NftCard = ({ data }) => {
+  // console.log(data)
   const { title, token_id, description } = data;
 
   return (
@@ -18,7 +19,9 @@ const NftCard = ({ data }) => {
       <Image src={apenft} className="nftImg" alt="nft-Image" />
 
       <div className="nftpricesRow">
-        <div>{description}</div>
+        <div>
+          {description}
+        </div>
       </div>
     </div>
   );

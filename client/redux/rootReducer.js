@@ -1,11 +1,11 @@
 // ** Reducers Imports
-import navbar from "./navbar";
-import lend from "./lend";
-import borrow from "./borrow";
-import error from "./error";
-import success from "./success";
-import profile from "./profile";
-import ens from "./ens";
+import navbar from "./navbar"
+import lend from "./lend"
+import borrow from "./borrow"
+import error from "./error"
+import success from "./success"
+import profile from "./profile"
+import ens from "./ens"
 
 const rootReducer = {
   navbar,
@@ -14,7 +14,7 @@ const rootReducer = {
   error,
   success,
   profile,
-  ens,
-};
+  ens
+}
 
-export default rootReducer;
+export default rootReducer

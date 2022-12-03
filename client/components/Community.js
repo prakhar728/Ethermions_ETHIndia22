@@ -23,8 +23,8 @@ function Community() {
         <div className={styles.socio}>
           <BsInstagram size={100} style={{ backgroundColor: "#0e0d17" }} />
           <p className={styles.description}>
-            Push the follow option on Instagram and be a part ZaPP, Stay tuned &
-            Stay Updated, NFTs for life.
+            Push the follow option on Instagram and be a part ZaPP, Stay
+            tuned & Stay Updated, NFTs for life.
           </p>
         </div>
       </div>
