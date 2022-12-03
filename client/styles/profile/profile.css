@@ -1,0 +1,94 @@
+.profileContainer {
+  display: flex;
+  padding: 0px 2rem 30px 2rem;
+}
+.profileBgContainer {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  background-image: linear-gradient(
+    to right,
+    rgb(153, 37, 173),
+    rgb(74, 8, 86)
+  );
+  height: 37%;
+}
+.profileSidebar {
+  width: 20%;
+  padding: 12px 30px;
+  margin: 0px 20px 0px 0px;
+  background-color: #0e0d17;
+  border-radius: 25px;
+}
+.innerContainer1 {
+  margin: 10px;
+}
+.innerContainer1 .ic1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+.innerContainer2 {
+  text-align: center;
+  margin: 10px 0px;
+  padding: 30px 0px;
+}
+.innerContainer2 .ic2 {
+  padding-right: 10px;
+  margin-top: 10px;
+}
+
+.innerContainer1 .ic1:hover,
+.innerContainer2 .ic2:hover,
+.icons:hover {
+  color: #960096;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.profileDetailContainer {
+  width: 90%;
+  border-radius: 25px;
+  background-color: #0e0d17;
+  padding: 5px;
+}
+
+.detailContainer {
+  padding: 20px;
+}
+
+.profileImage {
+  border-radius: 100%;
+  border: 12px solid #490049;
+  width: 250px;
+  height: 250px;
+}
+
+.personal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 20px;
+  padding: 0px 30px;
+}
+.personal h2 {
+  margin: 0px 0px 5px 0px;
+}
+.personal h5 {
+  text-align: left;
+}
+
+.icons {
+  margin: 5px;
+}
+
+.countDetails {
+  display: flex;
+  padding: 0px 50px;
+  margin: 20px;
+  justify-content: space-between;
+}
+
+/* @media screen and (max-width: 1105px) {
+  
+} */

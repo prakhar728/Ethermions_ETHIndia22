@@ -59,7 +59,7 @@ const Videobg = () => {
           },
           particles: {
             color: {
-              value: "#9925AD",
+              value: "linear-gradient(to-right, #C800FE, #5C0176)",
             },
 
             links: {
@@ -119,7 +119,7 @@ const Videobg = () => {
           </Link>
         </div>
       </div>
-      <LottieCard />
+      <LottieCard src="https://assets8.lottiefiles.com/private_files/lf30_iyicd2xy.json" />
     </div>
   );
 };
