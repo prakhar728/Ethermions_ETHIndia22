@@ -84,6 +84,10 @@ contract LenderBorrower is ERC721Holder, Ownable {
         return _temporaryProposalList;
     }
 
+    function returnCurrentProposalId() external view returns(uint256 currentProposal){
+    return _proposalId.current();
+    }
+    
     function  lendToProposal(uint256 _requiredProposalId ) public payable{
         require(msg.value>= borrowRequests[_requiredProposalId].amount,"Not enough amount lent");
         borrowRequests[_requiredProposalId].timeTaken = block.timestamp;

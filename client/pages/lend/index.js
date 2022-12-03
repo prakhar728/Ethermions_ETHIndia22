@@ -12,21 +12,23 @@ const data = {
   sno: "8071",
   name: "Bored ape",
   floorPrice: "61.39",
-  valuation: "67.79",
-};
+  valuation: "67.79"
+}
 
 const index = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const handleClick = (item) => {
-    dispatch(selectNft(item));
-  };
+    dispatch(selectNft(item))
+  }
 
-  const { walletAddress } = useSelector((state) => state.navbar);
+  const { walletAddress, instances } = useSelector((state) => state.navbar)
   useEffect(() => {
-    console.log(walletAddress);
-    walletAddress ? dispatch(getBorrowedNfts(walletAddress)) : null;
-  }, []);
-  const mynfts = useSelector((state) => state?.lend?.mynfts?.nft);
+    console.log(walletAddress)
+    // getAllNfts()
+    dispatch(getBorrowedNfts())
+
+  }, [])
+  const mynfts = useSelector((state) => state?.lend?.mynfts)
 
   return (
     <Layout>
@@ -34,11 +36,11 @@ const index = () => {
         <h1>Lend</h1>
         <h3>Offer loans to other users on their Non-Fungible Tokens</h3>
         <div className="lendContainer">
-          <div className="filterdiv">filter</div>
+          
           {mynfts ? (
             mynfts.map((item, i) => {
               return (
-                <div className="nftlistdiv">
+                <div className="nftlistdiv" key={i}>
                   <Link
                     onClick={() => handleClick(item)}
                     href={`/lend/${item.token_id}`}
@@ -46,7 +48,7 @@ const index = () => {
                     <NftCard data={item} />
                   </Link>
                 </div>
-              );
+              )
             })
           ) : (
             <div className={styles.vaultItem}>
@@ -57,7 +59,7 @@ const index = () => {
         <MdNotifications className="notify" size={30} />
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default index;
+export default index
