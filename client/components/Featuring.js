@@ -1,15 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import bgImg1 from "../assets/images/bgImg1.gif";
-import bgImg2 from "../assets/images/bgImg2.gif";
+import LottieCard from "./LottieCard";
 import styles from "../styles/feature.module.css";
-
 function Featuring() {
   return (
     <div className={styles.fContainer}>
       <div className={styles.bmain}>
         <div className="images">
-          <Image src={bgImg1} className={styles.nft1} alt="" />
+          <LottieCard src="https://assets5.lottiefiles.com/packages/lf20_EVZQfwJW6o.json" />
         </div>
         <div className={styles.content}>
           <h3>Borrows</h3>
@@ -60,7 +58,7 @@ function Featuring() {
           </div>
         </div>
         <div className={styles.images}>
-          <Image src={bgImg2} alt="nft1" className={styles.nft} />
+          <LottieCard src="https://assets5.lottiefiles.com/packages/lf20_3ysnvbux.json" />
         </div>
       </div>
     </div>

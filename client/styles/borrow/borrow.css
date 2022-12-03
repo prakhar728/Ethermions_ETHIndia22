@@ -1,0 +1,53 @@
+.borrowPageContainer {
+  padding: 25px 50px;
+}
+.BContainer {
+  background-color: #330033;
+  padding: 20px 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.VContainer {
+  color: #fff;
+  margin: 20px;
+  background-color: #330033;
+}
+.btnContainer {
+  padding: 0px 25px 0px 10px;
+  background-color: #330033;
+}
+.btn-vault {
+  padding: 10px 30px;
+  border-radius: 45px;
+  background-color: #0d0e0e;
+  color: white;
+  font-weight: bold;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #2f383c;
+  cursor: pointer;
+}
+.btn-vault:hover {
+  background-color: #5b1268;
+  border-color: #720a84;
+  transition: all 0.5s;
+}
+.VComponent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: #330033;
+}
+
+.VComponent p {
+  margin-left: 12px;
+  background-color: #330033;
+}
+
+.header-stack {
+  margin: 15px;
+}

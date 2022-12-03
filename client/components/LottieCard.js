@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-function LottieCard() {
+function LottieCard({ src }) {
   const ref = useRef(null);
   useEffect(() => {
     import("@lottiefiles/lottie-player");
@@ -14,7 +14,7 @@ function LottieCard() {
         mode="normal"
         width="500"
         height="500"
-        src="https://assets8.lottiefiles.com/private_files/lf30_iyicd2xy.json"
+        src={src}
       />
     </div>
   );

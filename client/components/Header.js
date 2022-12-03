@@ -5,19 +5,56 @@ import { useRouter } from "next/router";
 import { connectionButton, navbarList } from "./Header.data";
 import { FaUser } from "react-icons/fa";
 import { BiMenuAltRight, BiX } from "react-icons/bi";
+import { useAccount, useSigner } from "wagmi";
 // Assets imports
 import logo from "../assets/images/logo.png";
 // redux imports
-import { changeNavbarState, saveAddressAndSigner } from "../redux/navbar";
-import { useDispatch, useSelector } from "react-redux";
+import { changeNavbarState, saveAddressAndSigner, addContractAddresses } from "../redux/navbar"
+import { useDispatch, useSelector } from "react-redux"
+import { ethers } from "ethers"
+import abi from "../assets/contractsData/LenderBorrower.json"
+import LB_contract_address from "../assets/contractsData/LenderBorrower-address.json"
+import nft_contract_address from "../assets/contractsData/ZD-address.json"
+import { getEnsName } from "../redux/ens"
 
 const Header = () => {
   const dispatch = useDispatch();
+  const [addressfinal, setAddressfinal] = useState(null);
   const { navbarMobile } = useSelector((state) => state.navbar);
+  const { ensName } = useSelector((state) => state.ens);
   const router = useRouter();
   const urlpath = router.pathname;
+  const { address } = useAccount();
+  const { data: signer } = useSigner();
+
+  const instances = new ethers.Contract(
+    LB_contract_address.address,
+    abi.abi,
+    signer
+  );
+
+  useEffect(() => {
+    setAddressfinal(address)
+    dispatch(addContractAddresses({LB_contract_address: LB_contract_address.address, nft_contract_address: nft_contract_address.address}))
+    address && signer
+      ? dispatch(saveAddressAndSigner({ address, signer, instances }))
+      : null;
+    // address ? dispatch(getEnsName(address, signer?.provider)) : null
+    const func = async () => {
+      // console.log()
+      const provider = new ethers.getDefaultProvider(
+        "https://eth-mainnet.g.alchemy.com/v2/iTHRdl4nF5g4DGVs8W8mqUyCfiTxn0Tc"
+      );
+      // var name = await provider.lookupAddress(address)
+      dispatch(getEnsName({ address, provider }))
+    }
+    func()
+  }, [signer])
+
+  // console.log(addressfinal)
 
   const handleOnClick = () => {};
+
   return (
     <div className="navbarContainer">
       {navbarMobile ? null : (
@@ -53,19 +90,21 @@ const Header = () => {
               alignItems: "center",
             }}
           >
-            <Link href="/profile">
-              <div
-                className="btn"
-                style={{
-                  padding: "6px 8px",
-                  borderRadius: "100%",
-                  margin: "10px",
-                }}
-              >
-                <FaUser size={18} onClick={handleOnClick} />
-              </div>
-            </Link>
-            {connectionButton()}
+            {addressfinal ? (
+              <Link href="/profile">
+                <div
+                  className="btn"
+                  style={{
+                    padding: "6px 8px",
+                    borderRadius: "100%",
+                    margin: "10px",
+                  }}
+                >
+                  <FaUser size={18} onClick={handleOnClick} />
+                </div>
+              </Link>
+            ) : null}
+            {connectionButton(ensName)}
           </div>
           <BiMenuAltRight
             className="navbarIcon"

@@ -10,20 +10,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ensdomains/ens": "^0.6.2",
+    "@ensdomains/resolver": "^0.3.1",
     "@lottiefiles/lottie-player": "^1.6.1",
     "@rainbow-me/rainbowkit": "^0.8.0",
     "@reduxjs/toolkit": "^1.9.1",
+    "axios": "^1.2.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.6",
     "ethers": "^5.7.2",
+    "ipfs-http-client": "^59.0.0",
     "next": "13.0.6",
     "next-redux-wrapper": "^8.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
+    "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.0.5",
     "react-tsparticles": "^2.5.3",
     "tsparticles": "^2.5.3",
-    "wagmi": "^0.8.9"
+    "wagmi": "^0.8.9",
+    "web3.storage": "^4.4.0"
   }
 }
