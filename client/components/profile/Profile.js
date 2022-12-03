@@ -4,9 +4,23 @@ import { useAccount } from "wagmi";
 import { FiEdit2 } from "react-icons/fi";
 import { BsShare } from "react-icons/bs";
 import profile from "../../assets/images/ApesNft.jpg";
+import * as ethers from "ethers";
 
 function Profile() {
   const { address } = useAccount();
+
+  const provider = new ethers.providers.JsonRpcProvider(
+    "https://eth-mainnet.g.alchemy.com/v2/_06u4FJJGukQ9HntHpYBKifzcfhOYu5x"
+  );
+  // .lookupAddress("0x2c2148C9995A94Cf3c4365B19125027B5b94c51D")
+  const ens = async () => {
+    await provider.resolveName("vitalik.eth").then((res) => {
+      console.log(res);
+    });
+  };
+
+  const name = ens();
+  console.log(name);
 
   return (
     <>
