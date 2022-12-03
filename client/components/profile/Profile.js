@@ -5,30 +5,33 @@ import { FiEdit2 } from "react-icons/fi";
 import { BsShare } from "react-icons/bs";
 import profile from "../../assets/images/ApesNft.jpg";
 import * as ethers from "ethers";
+import { useState } from "react";
 
 function Profile() {
   const { address } = useAccount();
+  const [name, setName] = useState("");
 
-  const provider = new ethers.providers.JsonRpcProvider(
+  const provider = new ethers.getDefaultProvider(
     "https://eth-mainnet.g.alchemy.com/v2/_06u4FJJGukQ9HntHpYBKifzcfhOYu5x"
   );
-  // .lookupAddress("0x2c2148C9995A94Cf3c4365B19125027B5b94c51D")
+
   const ens = async () => {
-    await provider.resolveName("vitalik.eth").then((res) => {
-      console.log(res);
-    });
+    await provider
+      .lookupAddress("0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045")
+      .then((res) => {
+        setName(res);
+      });
   };
 
-  const name = ens();
+  ens();
   console.log(name);
-
   return (
     <>
       <div className="detailContainer">
         <Image src={profile} alt="" className="profileImage" />
         <div className="personal">
           <div className="nameaddress">
-            <h2>Unnnamed</h2>
+            {name === null || undefined ? <h2>Unnnamed</h2> : name}
             <h5>
               {address?.slice(0, 7)}....{address?.slice(32, 37)}
             </h5>
