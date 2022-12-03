@@ -142,3 +142,8 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.notify:hover {
+  color: #9925ad;
+  cursor: pointer;
+}
