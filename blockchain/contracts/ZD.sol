@@ -6,18 +6,19 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract ZappTokenNFT is ERC721, ERC721URIStorage, Ownable {
+contract ZD is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
-    Counters.Counter private _tokenId;
+    Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("ZappTokenNFT", "ZTN") {}
+    constructor() ERC721("ZD", "ZD") {}
 
-    function safeMint(address to, string memory uri) public onlyOwner {
-        uint256 tokenId = _tokenId.current();
-        _tokenId.increment();
+    function safeMint(address to, string memory uri) public onlyOwner returns(uint256 tokenIdMinted){
+        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
+        return _tokenIdCounter.current();
     }
 
     // The following functions are overrides required by Solidity.
@@ -25,8 +26,8 @@ contract ZappTokenNFT is ERC721, ERC721URIStorage, Ownable {
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
-    function  currentTokenId() external view returns(uint256 tokenIdCurrent){
-        return _tokenId.current();
+    function  getCurrentTokenId() external view returns(uint256 tokenIdCurrent){
+        return _tokenIdCounter.current();
     }
 
     function tokenURI(uint256 tokenId)

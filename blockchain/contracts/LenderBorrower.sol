@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
@@ -43,9 +44,9 @@ contract LenderBorrower is ERC721Holder, Ownable {
         uint256 tokenId;
     }
     mapping(uint256 => borrowRequest) public borrowRequests;
-    mapping(address => uint256[]) requestListByAddress; 
+    mapping(address => uint256[]) public requestListByAddress; 
 
-    constructor() {}
+    constructor()  {}
 
     function startBorrowProposal(
         uint256 amount,
@@ -74,20 +75,32 @@ contract LenderBorrower is ERC721Holder, Ownable {
         requestListByAddress[msg.sender].push(_proposalId.current());
         return _proposalId.current();
     }
+    function getTheProposals() external view returns(borrowRequest[] memory allBorrowRequests){
+        uint256[] memory temporaryProposalId = requestListByAddress[msg.sender];
+        borrowRequest[] memory _temporaryProposalList;
+        for(uint256 i = 0; i < temporaryProposalId.length; ++i ){
+            _temporaryProposalList[i]=borrowRequests[temporaryProposalId[i]];
+        }
+        return _temporaryProposalList;
+    }
 
     function  lendToProposal(uint256 _requiredProposalId ) public payable{
+        require(msg.value>= borrowRequests[_requiredProposalId].amount,"Not enough amount lent");
         borrowRequests[_requiredProposalId].timeTaken = block.timestamp;
         borrowRequests[_requiredProposalId].lender = msg.sender;
         payable(borrowRequests[_requiredProposalId].borrower).transfer(msg.value);
     }
 
     function withDrawProposal(uint256 _requiredProposalId) external{
+        require(msg.sender==borrowRequests[_requiredProposalId].borrower,"Only the person who made the request can withdraw it");
+        require(borrowRequests[_requiredProposalId].currentStatus==Status.requested,"The current status of Proposal doesn't allow this");
         borrowRequests[_requiredProposalId].currentStatus = Status.withDrawn;
         IERC721(address(borrowRequests[_requiredProposalId].nft)).safeTransferFrom(address(this),borrowRequests[_requiredProposalId].lender,borrowRequests[_requiredProposalId].tokenId);
 
     }
 
     function claimNft(uint256 _requiredProposalId) external{
+        require(msg.sender==borrowRequests[_requiredProposalId].lender,"Only the person who lent the money can claim this");
        IERC721(borrowRequests[_requiredProposalId].nft).safeTransferFrom(address(this),msg.sender,borrowRequests[_requiredProposalId].tokenId);
        borrowRequests[_requiredProposalId].currentStatus = Status.Settled2;
     }
@@ -98,7 +111,8 @@ contract LenderBorrower is ERC721Holder, Ownable {
         return amountDue;
     }
     function repayAll(uint256 _requiredProposalId) external payable{
-        (bool sent, ) = borrowRequests[_requiredProposalId].lender.call{value: msg.value}("");
+        (bool sent,) = borrowRequests[_requiredProposalId].lender.call{value: msg.value}("");
         require(sent, "Failed to send Ether");
+        
     }
 }
