@@ -1,63 +1,71 @@
-.lendpageContainer{
-    margin: 40px;
+.lendpageContainer {
+  margin: 40px;
 }
 
-.lendContainer{
-    display: flex;
+.lendContainer {
+  display: flex;
 }
 
-.filterdiv{
-    width: 20%;
+.filterdiv {
+  width: 20%;
 }
 
-.nftlistdiv{
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    
+.nftlistdiv {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.nftcard{
-    width: 250px;
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-image: linear-gradient(to bottom right, #070607, #373636); 
-    border-radius: 10px;
-    border: 1px solid #595959;
-    /* border: 4px solid #000; */
+.nftcard {
+  width: 250px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(to bottom right, #070607, #373636);
+  border-radius: 10px;
+  border: 1px solid #595959;
+  /* border: 4px solid #000; */
 }
 
-.nftcard:hover{
-    border: 3px solid #9925ad;
+.nftcard:hover {
+  border: 3px solid #9925ad;
 }
 
-.nftcard h5{
-    margin-top: -20px;
-    color: #aaaaaa;
+.nftcard h5 {
+  margin-top: -20px;
+  color: #aaaaaa;
 }
 
-.nftImg{
-    border-radius: 10px;
-    width: 80%;
-    height: 50%;
+.nftImg {
+  border-radius: 10px;
+  width: 80%;
+  height: 50%;
 }
 
-.nftpricesRow{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    border-top: 1px solid #595959;
+.nftpricesRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-top: 1px solid #595959;
 }
 
-.nftcardHead{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 10px;
-    border-bottom: 1px solid #595959;
+.nftcardHead {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  border-bottom: 1px solid #595959;
+}
+
+.notify {
+  color: #681777;
+}
+
+.notify:hover {
+  color: #c132da;
+  cursor: pointer;
 }

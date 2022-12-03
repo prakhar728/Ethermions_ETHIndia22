@@ -4,8 +4,9 @@ import Layout from "../../components/Layout";
 import NftCard from "../../components/lend/NftCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getBorrowedNfts, selectNft } from "../../redux/lend";
-import styles from "../../styles/nftstack.module.css"
+import styles from "../../styles/nftstack.module.css";
 import Loader from "../../components/Loader";
+import { MdNotifications } from "react-icons/md";
 
 const data = {
   sno: "8071",
@@ -53,6 +54,7 @@ const index = () => {
             </div>
           )}
         </div>
+        <MdNotifications className="notify" size={30} />
       </div>
     </Layout>
   );
