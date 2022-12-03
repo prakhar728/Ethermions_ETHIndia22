@@ -10,13 +10,13 @@ async function main() {
   
 
   
-  const ZappNFT = await hre.ethers.getContractFactory("ZappTokenNFT");
+  const ZappNFT = await hre.ethers.getContractFactory("ZD");
   const zappnft = await ZappNFT.deploy();
 
   await zappnft.deployed();
 
   await zappnft.transferOwnership("0x94e99f2247f855841e73a82c0562f2bfd760c1fe");
-  saveFiles(zappnft,"ZappTokenNFT");
+  saveFiles(zappnft,"ZD");
   console.log(
     `Zapp NFT Contract deployed to ${zappnft.address}`
   );
