@@ -2,7 +2,7 @@ const { ethers } = require("ethers");
 const { DefenderRelaySigner, DefenderRelayProvider } = require('defender-relay-client/lib/ethers');
 
 
-const ABI =[
+const ABI = [
   {
     "inputs": [],
     "stateMutability": "nonpayable",
@@ -427,9 +427,9 @@ const ABI =[
     "stateMutability": "nonpayable",
     "type": "function"
   }
-];
+]
 
-const Address = '0x1Df02bFC7b2d955FBBaae8e5f98A4E6c9d02FD21';
+const Address = '0x8256c9a4fe745DFc7b37D2c1B7A3a0475F04C26f';
 
 async function main(signer, reciepent, tokenURI) {
 	const nft = new ethers.Contract(Address, ABI, signer);
