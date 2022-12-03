@@ -6,10 +6,18 @@ import Link from "next/link"
 import { ethers } from "ethers"
 import { useSelector } from "react-redux"
 
-const NftCard = ({ data }) => {
+const ListCard = ({ item }) => {
   const { walletAddress, instances } = useSelector((state) => state.navbar)
   // console.log(data)
-  const { amount, borrower_address, nftURI, proposalid, repay, roi } = data
+  const {
+    borrower_address,
+    amount,
+    roi,
+    repay,
+    proposalid,
+    nftURI,
+    whenBorrowed
+  } = item
   const lendToProposal = async () => {
     console.log("Starting to lend")
     console.log(ethers.utils.parseEther((amount / 1000).toString()))
@@ -36,18 +44,22 @@ const NftCard = ({ data }) => {
       </div>
 
       <div className="nftpricesRow">
-        <Link
-          href="https://testnets.opensea.io/assets/mumbai/0x440dae476c9ca1437fca4c142394b5d6ac2dfe88/6"
-          target="_blank"
-        >
+        <Link href={nftURI ? nftURI : "http"} target="_blank">
           <button className="btn btnSqr nftpricesele">View NFT</button>
         </Link>
-        <button className="btn btnSqr nftpricesele" onClick={lendToProposal}>
-          Lend
-        </button>
+
+        {(Date.now()/1000 - whenBorrowed) / 86400 > repay ? (
+          <button className="btn btnSqr nftpricesele" onClick={lendToProposal}>
+            Claim NFT 
+          </button>
+        ) : (
+          <button className="btn btnSqr">
+            {Math.floor(repay - (Date.now()/1000 - whenBorrowed) / 86400)} Days to claim
+          </button>
+        )}
       </div>
     </div>
   )
 }
 
-export default NftCard
+export default ListCard

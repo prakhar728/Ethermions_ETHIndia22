@@ -10,6 +10,7 @@ import axios from "axios"
 
 export const getMyNfts = createAsyncThunk("borrow/getMyNfts", async (acc) => {
   try {
+    console.log(process.env.API_DOMAIN);
     const response = await axios.get(`${process.env.API_DOMAIN}/${acc}/getnft`)
     return response.data
   } catch (err) {

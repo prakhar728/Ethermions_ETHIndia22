@@ -4,17 +4,31 @@ import { useAccount } from "wagmi";
 import { FiEdit2 } from "react-icons/fi";
 import { BsShare } from "react-icons/bs";
 import profile from "../../assets/images/ApesNft.jpg";
+import * as ethers from "ethers";
+import { useState } from "react";
+import Loader from "../Loader";
+import { useSelector } from "react-redux";
 
 function Profile() {
   const { address } = useAccount();
+  const [name, setName] = useState("");
+  const [avtr, setAvtr] = useState("");
+
+    const { ensName, ensImg } = useSelector(state=>state.ens)
 
   return (
     <>
       <div className="detailContainer">
-        <Image src={profile} alt="" className="profileImage" />
+          <Image
+            src={ensImg}
+            alt=""
+            className="profileImage"
+            width={200}
+            height={200}
+          />
         <div className="personal">
           <div className="nameaddress">
-            <h2>Unnnamed</h2>
+            {ensName === null || undefined ? <h2>Unnnamed</h2> : ensName}
             <h5>
               {address?.slice(0, 7)}....{address?.slice(32, 37)}
             </h5>

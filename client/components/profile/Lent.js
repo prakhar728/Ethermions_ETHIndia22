@@ -1,39 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { getMyLendings } from "../../redux/profile";
-import { useDispatch, useSelector } from "react-redux";
-import Loader from "../Loader";
-import Error from "../Error";
-import Card from "../profile/ProfileCard";
+import React, { useState, useEffect } from "react"
+import { getMyLendings } from "../../redux/profile"
+import { useDispatch, useSelector } from "react-redux"
+import Loader from "../Loader"
+import Error from "../Error"
+import Card from "../profile/ProfileCard"
+import ListCard from './ListCard'
 
 function Lent() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const { loading, myLendings } = useSelector((state) => state.profile);
+  const { loading, myLendings } = useSelector((state) => state.profile)
 
   useEffect(() => {
-    dispatch(getMyLendings());
-  }, []);
+    dispatch(getMyLendings())
+  }, [])
 
   return (
     <>
-      <div className="mainLoanContainer">
-        <div className="loanContainer">
+      <div className="mainLendContainer">
+        <div className="lendContainer">
           <h4>MY LENDINGS</h4>
+          <Error />
           {loading ? (
-            <Loader />
+            <div>
+              <Loader />
+            </div>
           ) : myLendings ? (
-            myLendings.nft?.map((item) => (
+            myLendings?.map((item) => (
               <div className="nftComponent">
-                <Card
-                  lender_address={item.lender_address}
-                  borrower_address={item.borrower_address}
-                  amount={item.amount}
-                  contract_address={item.contract_address}
-                  repay={item.repay}
-                  roi={item.roi}
-                  description={item.description}
-                  title={item.title}
-                  token_id={item.token_id}
+                <ListCard
+                  item = {item}
                 />
               </div>
             ))
@@ -41,7 +37,7 @@ function Lent() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Lent;
+export default Lent

@@ -1,63 +1,67 @@
-.lendpageContainer{
-    margin: 40px;
+.lendpageContainer {
+  margin: 40px;
+  overflow-x: hidden;
 }
 
-.lendContainer{
-    display: flex;
+.lendContainer {
+  display: flex;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.filterdiv{
-    width: 20%;
+.filterdiv {
+  width: 20%;
 }
 
-.nftlistdiv{
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    
+.nftlistdiv {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.nftcard{
-    width: 250px;
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-image: linear-gradient(to bottom right, #070607, #373636); 
-    border-radius: 10px;
-    border: 1px solid #595959;
-    /* border: 4px solid #000; */
+.nftcard {
+  width: 100%;
+  /* height: 100px; */
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(to bottom right, #070607, #373636);
+  border-radius: 10px;
+  border: 1px solid #595959;
+  padding: 30px;
+  /* border: 4px solid #000; */
 }
 
-.nftcard:hover{
+/* .nftcard:hover{
     border: 3px solid #9925ad;
+} */
+
+.nftcard h5 {
+  margin-top: -20px;
+  color: #aaaaaa;
 }
 
-.nftcard h5{
-    margin-top: -20px;
-    color: #aaaaaa;
+.nftImg {
+  border-radius: 10px;
+  width: 80%;
+  height: 50%;
 }
 
-.nftImg{
-    border-radius: 10px;
-    width: 80%;
-    height: 50%;
+.nftpricesRow {
+  display: flex;
+  padding: 15px;
 }
 
-.nftpricesRow{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    border-top: 1px solid #595959;
+.nftpricesele {
+  margin: 0 10px;
+  font-weight: bold;
 }
 
-.nftcardHead{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 10px;
-    border-bottom: 1px solid #595959;
+.nftcardHead {
+  padding: 0px 10px;
 }

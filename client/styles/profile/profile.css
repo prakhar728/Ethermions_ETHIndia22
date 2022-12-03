@@ -6,6 +6,7 @@
 .profileBgContainer {
   background-color: #ad00ad;
   border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
   background-image: linear-gradient(to right, #bd00bd, #600060);
   height: 37%;
 }
