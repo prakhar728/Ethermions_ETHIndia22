@@ -10,6 +10,7 @@ import { useState } from "react";
 function Profile() {
   const { address } = useAccount();
   const [name, setName] = useState("");
+  const [avtr, setAvtr] = useState("");
 
   const provider = new ethers.getDefaultProvider(
     "https://eth-mainnet.g.alchemy.com/v2/_06u4FJJGukQ9HntHpYBKifzcfhOYu5x"
@@ -23,12 +24,25 @@ function Profile() {
       });
   };
 
+  const avatar = async () => {
+    await provider
+      .getAvatar("0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045")
+      .then((res) => setAvtr(res));
+  };
+
+  avatar();
   ens();
-  console.log(name);
+
   return (
     <>
       <div className="detailContainer">
-        <Image src={profile} alt="" className="profileImage" />
+        <Image
+          src={avtr}
+          alt=""
+          className="profileImage"
+          width={200}
+          height={200}
+        />
         <div className="personal">
           <div className="nameaddress">
             {name === null || undefined ? <h2>Unnnamed</h2> : name}

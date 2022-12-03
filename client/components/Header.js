@@ -41,7 +41,6 @@ const Header = () => {
       : null;
     // address ? dispatch(getEnsName(address, signer?.provider)) : null
     const func = async () => {
-      // console.log()
       const provider = new ethers.getDefaultProvider(
         "https://eth-mainnet.g.alchemy.com/v2/iTHRdl4nF5g4DGVs8W8mqUyCfiTxn0Tc"
       );
