@@ -1,0 +1,74 @@
+.fContainer {
+  padding: 1rem 4rem 2rem;
+  width: 100%;
+}
+.bmain {
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 15px;
+  margin-top: 15px;
+}
+.lmain {
+  display: flex;
+  align-items: center;
+}
+.bmain .content {
+  margin: 10px 30px;
+}
+
+.bmain .colored {
+  color: #7d5ad5;
+}
+
+.lmain .colored {
+  color: #de2e8e;
+}
+.lmain .content {
+  margin: 10px 30px;
+}
+.nft {
+  height: 400px;
+  width: 400px;
+  border-radius: 30px;
+  z-index: 5;
+}
+.images .nft {
+  padding: 10px;
+}
+.nft1 {
+  height: 400px;
+  width: 400px;
+  border-radius: 30px;
+  z-index: 5;
+}
+
+@media screen and (max-width: 785px) {
+  .lmain,
+  .bmain {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nft {
+    height: 250px;
+    width: 250px;
+  }
+  .nft1 {
+    height: 250px;
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .fContainer {
+    padding: 15px 3rem;
+  }
+  .nft {
+    height: 200px;
+    width: 350px;
+  }
+  .nft1 {
+    height: 150px;
+    width: 150px;
+  }
+}

@@ -7,6 +7,7 @@ import { wrapper } from "../redux/store";
 // styles import
 import "../styles/globals.css";
 import "../styles/navbar.css";
+import "../styles/homeBg.css";
 import "@rainbow-me/rainbowkit/styles.css";
 
 const { chains, provider } = configureChains(
