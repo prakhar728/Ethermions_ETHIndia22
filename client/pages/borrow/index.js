@@ -1,20 +1,22 @@
-import React, { useEffect } from "react";
-import Layout from "../../components/Layout";
-import NFTStack from "../../components/borrow/NFTStack";
-import { BsHddStack, BsStars } from "react-icons/bs";
-import { AiOutlineThunderbolt } from "react-icons/ai";
-import Link from "next/link";
-import { getMyNfts } from "../../redux/borrow";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react"
+import Layout from "../../components/Layout"
+import Success from "../../components/Success"
+import NFTStack from "../../components/borrow/NFTStack"
+import { BsHddStack, BsStars } from "react-icons/bs"
+import { AiOutlineThunderbolt } from "react-icons/ai"
+import Link from "next/link"
+import { getMyNfts } from "../../redux/borrow"
+import { setSuccess } from "../../redux/success"
+import { useDispatch, useSelector } from "react-redux"
 
 const index = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const { walletAddress } = useSelector((state) => state.navbar);
+  const { walletAddress } = useSelector((state) => state.navbar)
 
   useEffect(() => {
-    walletAddress ? dispatch(getMyNfts(walletAddress)) : null;
-  }, []);
+    walletAddress ? dispatch(getMyNfts(walletAddress)) : null
+  }, [])
 
   return (
     <Layout>
@@ -45,8 +47,9 @@ const index = () => {
         </div>
         <NFTStack />
       </div>
+      <Success />
     </Layout>
-  );
-};
+  )
+}
 
-export default index;
+export default index

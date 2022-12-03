@@ -9,31 +9,33 @@ import { useAccount, useSigner } from "wagmi";
 // Assets imports
 import logo from "../assets/images/logo.png";
 // redux imports
-import { changeNavbarState, saveAddressAndSigner } from "../redux/navbar";
-import { useDispatch, useSelector } from "react-redux";
-import { ethers } from "ethers";
-import abi from "../assets/contractsData/LenderBorrower.json";
-import contract_address from "../assets/contractsData/LenderBorrower-address.json";
-// import { getEnsName } from "../redux/ens";
+import { changeNavbarState, saveAddressAndSigner, addContractAddresses } from "../redux/navbar"
+import { useDispatch, useSelector } from "react-redux"
+import { ethers } from "ethers"
+import abi from "../assets/contractsData/LenderBorrower.json"
+import LB_contract_address from "../assets/contractsData/LenderBorrower-address.json"
+import nft_contract_address from "../assets/contractsData/ZD-address.json"
+import { getEnsName } from "../redux/ens"
 
 const Header = () => {
   const dispatch = useDispatch();
   const [addressfinal, setAddressfinal] = useState(null);
   const { navbarMobile } = useSelector((state) => state.navbar);
-  // const { ensName } = useSelector((state) => state.ens);
+  const { ensName } = useSelector((state) => state.ens);
   const router = useRouter();
   const urlpath = router.pathname;
   const { address } = useAccount();
   const { data: signer } = useSigner();
 
   const instances = new ethers.Contract(
-    contract_address.address,
+    LB_contract_address.address,
     abi.abi,
     signer
   );
 
   useEffect(() => {
-    setAddressfinal(address);
+    setAddressfinal(address)
+    dispatch(addContractAddresses({LB_contract_address: LB_contract_address.address, nft_contract_address: nft_contract_address.address}))
     address && signer
       ? dispatch(saveAddressAndSigner({ address, signer, instances }))
       : null;
@@ -44,10 +46,10 @@ const Header = () => {
         "https://eth-mainnet.g.alchemy.com/v2/iTHRdl4nF5g4DGVs8W8mqUyCfiTxn0Tc"
       );
       // var name = await provider.lookupAddress(address)
-      // dispatch(getEnsName({ address, provider }));
-    };
-    func();
-  }, [signer]);
+      dispatch(getEnsName({ address, provider }))
+    }
+    func()
+  }, [signer])
 
   // console.log(addressfinal)
 
@@ -102,7 +104,7 @@ const Header = () => {
                 </div>
               </Link>
             ) : null}
-            {connectionButton(null)}
+            {connectionButton(ensName)}
           </div>
           <BiMenuAltRight
             className="navbarIcon"

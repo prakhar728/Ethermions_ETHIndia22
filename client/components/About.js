@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styles from "../styles/about.module.css";
+// import { Collapse } from "react-bootstrap";
 
 function About() {
   return (

@@ -36,7 +36,7 @@ const NFTStack = () => {
   };
 
   const onSubmit = () => {
-    console.log("submitted");
+    console.log("submitted", data)
 
     dispatch(importNft(data))
       .unwrap()

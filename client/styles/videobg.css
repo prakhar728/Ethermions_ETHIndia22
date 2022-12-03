@@ -1,0 +1,105 @@
+.videoContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow-x: hidden;
+  margin: 25px;
+  /* margin-top: -20px; */
+  z-index: 10;
+}
+
+.videoContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin: 0px 20px;
+  z-index: 5;
+}
+
+.videoContent h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.videoContent h3 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.videobtn {
+  margin: 10px;
+  margin-left: 0px;
+  width: 20%;
+  min-width: 150px;
+}
+
+.vidbutton {
+  display: flex;
+}
+
+.emailContainer {
+  margin: 10px 15px;
+  padding: 0px 30px;
+  border-radius: 15px;
+  background-color: #0e0d17;
+}
+.emailContainer h2 {
+  background-color: #0e0d17;
+}
+.emailContainer h6 {
+  margin-top: 2px;
+}
+.signBtn {
+  margin: 10px;
+  margin-left: 0px;
+  width: 20%;
+  min-width: 150px;
+  padding: 10px 30px;
+  border-radius: 45px;
+  background-color: #0d0e0e;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #2f383c;
+  cursor: pointer;
+  color: aliceblue;
+}
+.signBtn:hover {
+  background-color: #9925ad;
+  border-color: #720a84;
+  transition: all 0.5s;
+}
+.videoImg {
+  z-index: 5;
+}
+
+@media screen and (max-width: 835px) {
+  .videoImg {
+    display: none;
+  }
+
+  .videoContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 30px;
+  }
+
+  .videoContent h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .videoContent h3 {
+    font-size: 1rem;
+    text-align: center;
+  }
+  .emailContainer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
