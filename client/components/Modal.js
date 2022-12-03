@@ -12,7 +12,7 @@ const Modal = ({
 }) => {
   return (
     <div className="modalContainer">
-      <div className="modalABody">
+      <div className="modalBody">
         <div className="modalHead">
           <h2>{heading}</h2>
           <ImCross onClick={closeModal} style={{ cursor: "pointer" }} />
