@@ -1,6 +1,17 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ethers } from "ethers";
 
-export function connectionButton() {
+export function connectionButton(ensName) {
+  const provider = new ethers.providers.JsonRpcProvider(
+    "https://eth-mainnet.g.alchemy.com/v2/_06u4FJJGukQ9HntHpYBKifzcfhOYu5x"
+  );
+
+  //   const ENSInstance = new ENS();
+  const ens = async () =>
+    await provider.resolveName("vitalik.eth").then((result) => {
+      return result;
+    });
+
   return (
     <ConnectButton.Custom>
       {({
@@ -93,7 +104,7 @@ export function connectionButton() {
                     onClick={openAccountModal}
                     type="button"
                   >
-                    {account.displayName}
+                    {ensName ? ensName : account.displayName}
                     {account.displayBalance
                       ? ` (${account.displayBalance})`
                       : ""}

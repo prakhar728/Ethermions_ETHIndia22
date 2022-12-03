@@ -2,14 +2,8 @@
   display: flex;
   padding: 0px 2rem 30px 2rem;
 }
-.profileBgContainer {
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  background-image: linear-gradient(
-    to right,
-    rgb(153, 37, 173),
-    rgb(74, 8, 86)
-  );
+.profileBgContainer{
+  background-color: #ad00ad;
   height: 37%;
 }
 .profileSidebar {
@@ -59,7 +53,7 @@
 
 .profileImage {
   border-radius: 100%;
-  border: 12px solid #490049;
+  border: 12px solid #210221;
   width: 250px;
   height: 250px;
 }
