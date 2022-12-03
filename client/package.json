@@ -13,8 +13,10 @@
     "@ensdomains/ens": "^0.6.2",
     "@ensdomains/resolver": "^0.3.1",
     "@lottiefiles/lottie-player": "^1.6.1",
+    "@pushprotocol/restapi": "^0.2.2",
     "@rainbow-me/rainbowkit": "^0.8.0",
     "@reduxjs/toolkit": "^1.9.1",
+    "@web3-react/core": "^6.1.9",
     "axios": "^1.2.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.6",
@@ -29,7 +31,7 @@
     "react-redux": "^8.0.5",
     "react-tsparticles": "^2.5.3",
     "tsparticles": "^2.5.3",
-    "wagmi": "^0.8.9",
+    "wagmi": "^0.8.10",
     "web3.storage": "^4.4.0"
   }
 }
