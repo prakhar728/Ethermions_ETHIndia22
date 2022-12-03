@@ -20,6 +20,7 @@ import "../styles/profile/loans.css";
 import "../styles/profile/offer.css";
 import "../styles/profile/profileCard.css";
 import "../styles/modal.css";
+import "../styles/profile/lent.css";
 
 const { chains, provider } = configureChains(
   [

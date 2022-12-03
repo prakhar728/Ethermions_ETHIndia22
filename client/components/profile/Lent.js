@@ -17,12 +17,14 @@ function Lent() {
 
   return (
     <>
-      <div className="mainLoanContainer">
-        <div className="loanContainer">
+      <div className="mainLendContainer">
+        <div className="lendContainer">
           <h4>MY LENDINGS</h4>
           <Error />
           {loading ? (
-            <Loader />
+            <div>
+              <Loader />
+            </div>
           ) : myLendings ? (
             myLendings?.map((item) => (
               <div className="nftComponent">

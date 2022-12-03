@@ -27,12 +27,10 @@ const tabs = [
     name: "MY OFFER",
     icon: <MdOutlineLocalOffer size={20} className="icons" />,
   },
-
 ];
 
 function index() {
   const [tab, setTab] = useState("MY PROFILE");
-  console.log(tab);
   return (
     <Layout>
       <div className="profileContainer">
