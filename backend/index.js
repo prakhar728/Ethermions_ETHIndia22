@@ -6,6 +6,7 @@ const connectToMongo = require("./config/db");
 
 const mintnft = require("./routes/mintnft");
 const borrownft = require("./routes/borrownft");
+const clear = require("./routes/clear");
 
 
 const app = express();
@@ -20,6 +21,7 @@ connectToMongo();
 
 app.use("/api",mintnft);
 app.use("/api",borrownft);
+app.use("/api",clear)
 
 
 app.listen(PORT, () => {
