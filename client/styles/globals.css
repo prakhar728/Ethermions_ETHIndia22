@@ -24,3 +24,34 @@ a {
     background: black;
   }
 }
+
+.btn {
+  padding: 10px 30px;
+  border-radius: 45px;
+  background-color: #0d0e0e;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #2f383c;
+  cursor: pointer;
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px #2f383c;
+}
+
+.btnSqr {
+  border-radius: 15px;
+}
+
+.btn:hover {
+  background-color: #9925ad;
+  border-color: #720a84;
+  transition: all 0.5s;
+}
+
+.btn:active {
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+  transition: all 0.3s;
+}
