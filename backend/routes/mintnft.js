@@ -18,9 +18,9 @@ router.post(
 
       var contractABI;
       // Fetch ABI
-
+      console.log( new URL(`https://api-testnet.polygonscan.com/api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY}`) )
       fetch(
-        `https://api-testnet.polygonscan.com/api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY}`
+       new URL(`https://api-testnet.polygonscan.com/api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY}`) 
       )
         .then(async (resp1) => {
           const provider = ethers.getDefaultProvider(
@@ -47,7 +47,7 @@ router.post(
         .catch((err) => {
           return res.status(400).json({
             status: false,
-            message: "Invalid Contract Address provided",
+            message: "ERRRRRRRRRRRRR, Again same error",
           });
         })
         .then(async (res2) => {
