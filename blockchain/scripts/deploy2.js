@@ -9,15 +9,17 @@ const saveFiles = require("./helper");
 async function main() {
   
 
-  const LenderBorrower = await hre.ethers.getContractFactory("LenderBorrower");
-  const lenderborrower = await Lock.deploy();
-
-  await lenderborrower.deployed();
-  saveFiles(lock,"LenderBorrower");
-  console.log(
-    `LenderBorrower Contract deployed to ${lenderborrower.address}`
-  );
   
+  const ZappNFT = await hre.ethers.getContractFactory("ZappTokenNFT");
+  const zappnft = await ZappNFT.deploy();
+
+  await zappnft.deployed();
+
+  await zappnft.transferOwnership("0x94e99f2247f855841e73a82c0562f2bfd760c1fe");
+  saveFiles(zappnft,"ZappTokenNFT");
+  console.log(
+    `Zapp NFT Contract deployed to ${zappnft.address}`
+  );
 }
 
 // We recommend this pattern to be able to use async/await everywhere
