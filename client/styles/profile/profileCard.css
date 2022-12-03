@@ -1,0 +1,19 @@
+.mainModalContainer {
+  display: flex;
+  padding: 15px;
+  margin: 15px;
+}
+.nftInfoContainer {
+  width: 100%;
+  text-align: center;
+}
+.nftImgContainer {
+}
+.nftimg {
+  border-radius: 25px;
+}
+.ownerInfoContainer {
+  width: 100%;
+}
+.detailContainer {
+}
