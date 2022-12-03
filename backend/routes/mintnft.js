@@ -18,7 +18,7 @@ router.post(
 
       var contractABI;
       // Fetch ABI
-      console.log( new URL(`https://api-testnet.polygonscan.com/api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY}`) )
+      console.log( new URL(`api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY}`,'https://api-testnet.polygonscan.com/') )
       fetch(
        new URL(`https://api-testnet.polygonscan.com/api?module=contract&action=getabi&address=${contract_address}&apikey=${process.env.API_KEY}`) 
       )
