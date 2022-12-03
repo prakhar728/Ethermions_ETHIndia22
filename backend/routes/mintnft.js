@@ -1,4 +1,4 @@
-const nftwallet = require("../modal/Nft");
+const nftwallet = require("../models/Nft");
 const router = require("express").Router();
 const ethers = require("ethers");
 const axios = require("axios");
