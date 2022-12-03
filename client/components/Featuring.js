@@ -1,10 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import bgImg1 from "../assets/images/bgImg1.gif";
-import bgImg2 from "../assets/images/bgImg2.gif";
-import styles from "../styles/feature.module.css";
 import LottieCard from "./LottieCard";
-
+import styles from "../styles/feature.module.css";
 function Featuring() {
   return (
     <div className={styles.fContainer}>

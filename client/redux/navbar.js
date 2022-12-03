@@ -16,6 +16,8 @@ export const navbarSlice = createSlice({
     walletAddress: null,
     signer: null,
     instances: null,
+    LB_contract_address: null,
+    nft_contract_address: null
   },
   reducers: {
     changeNavbarState: (state) => {
@@ -26,6 +28,10 @@ export const navbarSlice = createSlice({
       state.signer = action.payload.signer;
       state.instances = action.payload.instances;
     },
+    addContractAddresses: (state, action) => {
+      state.LB_contract_address = action.payload.LB_contract_address
+      state.nft_contract_address = action.payload.nft_contract_address
+    }
   },
   // extraReducers: (builder) => {
   //   builder.addCase(sendAddress.fulfilled, (state, action) => {
@@ -34,6 +40,6 @@ export const navbarSlice = createSlice({
   // }
 });
 
-export const { changeNavbarState, saveAddressAndSigner } = navbarSlice.actions;
+export const { changeNavbarState, saveAddressAndSigner, addContractAddresses } = navbarSlice.actions;
 
 export default navbarSlice.reducer;

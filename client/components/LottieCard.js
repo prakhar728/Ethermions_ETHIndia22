@@ -21,4 +21,3 @@ function LottieCard({ src }) {
 }
 
 export default LottieCard;
-

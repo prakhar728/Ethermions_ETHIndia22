@@ -1,7 +1,6 @@
 const nftwallet = require("../models/Nft");
 const router = require("express").Router();
 const ethers = require("ethers");
-const axios = require("axios");
 const fetch = require("node-fetch");
 
 router.post(
@@ -39,7 +38,7 @@ router.post(
         .then(async () => {
           const allNFT = await nftwallet.find({ wallet_address });
           return res.status(200).json({
-            message: `Successfully Imported NFT with ${imp.title} & ${contract_address}`,
+            message: `Successfully Imported NFT with ${title} & ${contract_address}`,
             nfts: allNFT,
           });
         });

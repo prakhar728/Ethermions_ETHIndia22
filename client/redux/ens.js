@@ -3,7 +3,8 @@ import {
   createAsyncThunk,
   isRejected,
   isPending,
-} from "@reduxjs/toolkit";
+  isAnyOf
+} from "@reduxjs/toolkit"
 
 export const getEnsName = createAsyncThunk(
   "ens/getEnsName",
@@ -22,29 +23,31 @@ export const getEnsName = createAsyncThunk(
 export const ensSlice = createSlice({
   name: "ens",
   initialState: {
-    loading: false,
-    ensName: null,
-    error: null,
+    ensName: null
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getEnsName.fulfilled, (state, action) => {
-        state.ensName = action.payload;
-        state.loading = false;
+        state.ensName = action.payload
       })
-      .addMatcher(isPending, (state, action) => {
+      .addCase(getEnsName.pending, (state) => {
         // global error handle reducer
         state.loading = true;
         state.error = null;
       })
-      .addMatcher(isRejected, (state, action) => {
+      .addCase(getEnsName.rejected, (state, action) => {
         // global error handle reducer
-        state.error = action.payload;
-        state.loading = false;
-      });
-  },
-});
+        state.loading = false
+        state.error = action.payload
+      })
+    // .addMatcher(isRejected, (state, action) => {
+    //   // global error handle reducer
+    //   state.error = action.payload
+    //   state.loading = false
+    // })
+  }
+})
 
 // export const { getMyNfts, importNft } = borrowSlice.actions
 

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 // export const sendAddress = createAsyncThunk(
 //   "navbar/sendAddress",
@@ -12,23 +12,23 @@ import { createSlice } from "@reduxjs/toolkit";
 export const successSlice = createSlice({
   name: "success",
   initialState: {
-    message: null,
+    message: null
   },
   reducers: {
     setSuccess: (state, action) => {
-      state.message = action.payload;
+      state.message = action.payload
     },
     clearSuccess: (state) => {
-      state.message = null;
-    },
-  },
+      state.message = null
+    }
+  }
   // extraReducers: (builder) => {
   //   builder.addCase(sendAddress.fulfilled, (state, action) => {
   //     state.walletAddress = action.payload
   //   })
   // }
-});
+})
 
-export const { setSuccess, clearSuccess } = successSlice.actions;
+export const { setSuccess, clearSuccess } = successSlice.actions
 
-export default successSlice.reducer;
+export default successSlice.reducer

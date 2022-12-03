@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ImCross } from "react-icons/im";
-import { clearError } from "../redux/error";
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { ImCross } from "react-icons/im"
+import { clearError } from "../redux/error"
 
 const Error = () => {
   // const [showError, setIsShowError] = useState(true)
-  const { message } = useSelector((state) => state.error);
-  const dispatch = useDispatch();
+  const { message } = useSelector((state) => state.error)
+  const dispatch = useDispatch()
   useEffect(() => {
-    if (message) {
-      setTimeout(() => {
-        // setIsShowError(false)
-        dispatch(clearError());
-      }, 10000);
+    if(message){
+        setTimeout(() => {
+          // setIsShowError(false)
+          dispatch(clearError())
+        }, 10000)
     }
-  }, [message]);
+  }, [message])
 
-  if (message === null) {
-    return null;
+  if (message===null) {
+    return null
   }
   return (
     <>
@@ -27,7 +27,7 @@ const Error = () => {
             style={{
               width: "100%",
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "space-between"
             }}
           >
             <h3>Error</h3>
@@ -42,7 +42,7 @@ const Error = () => {
         <></>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Error;
+export default Error

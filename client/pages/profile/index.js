@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { BiWalletAlt } from "react-icons/bi";
 import Layout from "../../components/Layout";
 import { MdOutlineLocalOffer } from "react-icons/md";
@@ -26,6 +27,7 @@ const tabs = [
     name: "MY OFFER",
     icon: <MdOutlineLocalOffer size={20} className="icons" />,
   },
+
 ];
 
 function index() {
