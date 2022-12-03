@@ -1,28 +1,31 @@
-import React, { useState } from "react";
-import styles from "../../styles/nftstack.module.css";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { useAccount } from "wagmi";
-import Card from "./Card";
-import { RiAddBoxFill } from "react-icons/ri";
-import Modal from "../Modal";
-import TextInput from "../form/TextInput";
-import { importNft } from "../../redux/borrow";
-import { setSuccess } from "../../redux/success";
-import { useDispatch, useSelector } from "react-redux";
-import Error from "../Error";
-import Loader from "../Loader";
+import React, { useState } from "react"
+import styles from "../../styles/nftstack.module.css"
+import { AiOutlineInfoCircle } from "react-icons/ai"
+import { useAccount } from "wagmi"
+import Card from "./Card"
+import { RiAddBoxFill } from "react-icons/ri"
+import Modal from "../Modal"
+import TextInput from "../form/TextInput"
+import { importNft } from "../../redux/borrow"
+import { setSuccess } from "../../redux/success"
+import { useDispatch, useSelector } from "react-redux"
+import Error from "../Error"
+import Loader from "../Loader"
+import axios from "axios"
+import { ethers } from "ethers"
 
 const NFTStack = () => {
   const { address, isConnected } = useAccount();
   const [isModal, setIsModal] = useState(false);
   const [data, setData] = useState({
     contractAddress: "",
-    tokenId: "",
-  });
-  const dispatch = useDispatch();
-  const nftList = useSelector((state) => state.borrow?.mynfts?.nft);
-  const { loading } = useSelector((state) => state.borrow);
-  console.log(nftList);
+    tokenId: ""
+  })
+  const dispatch = useDispatch()
+  const nftList = useSelector((state) => state.borrow?.mynfts?.nft)
+  const { loading } = useSelector((state) => state.borrow)
+  const { walletAddress } = useSelector((state) => state.navbar)
+  console.log(nftList)
   const closeModal = () => {
     setIsModal(!isModal);
   };
@@ -38,10 +41,57 @@ const NFTStack = () => {
   const onSubmit = () => {
     console.log("submitted", data)
 
-    dispatch(importNft(data))
-      .unwrap()
-      .then(() => dispatch(setSuccess("NFT imported Successfully!")));
-  };
+    axios
+      .get(
+        `https://api-testnet.polygonscan.com/api?module=contract&action=getabi&address=${data.contractAddress}&apikey=${process.env.API_KEY_POLYGON}`
+      )
+      .then(async (resp1) => {
+        const provider = ethers.getDefaultProvider(
+          `https://polygon-mumbai.g.alchemy.com/v2/${process.env.ALCHEMY_KEY}`
+        )
+        const contractABI = await resp1.data.result
+        const currentWallet = new ethers.Wallet(
+          process.env.PRIVATE_KEY,
+          provider
+        )
+
+        const currentContract = new ethers.Contract(
+          data.contractAddress,
+          contractABI,
+          currentWallet
+        )
+        const ownerOfNft = await currentContract.ownerOf(data.tokenId)
+        if (ownerOfNft != walletAddress) {
+          console.error("The Owner can only call this function")
+        } else {
+          const tokenUri = await currentContract.tokenURI(data.tokenId)
+
+          axios.get(tokenUri).then(async (res) => {
+            console.log(res)
+            axios
+              .post(
+                `${process.env.API_DOMAIN}/${data.contractAddress}/${walletAddress}/importNft`,
+                {
+                  title: res.data.title,
+                  description: res.data.description,
+                  image: res.data.image,
+                  token_id: data.tokenId
+                }
+              )
+              .then((res) => {
+                console.log("Success Backend API Import", res)
+              })
+              .catch((err) => {
+                console.log("Error while importing", err)
+              })
+          })
+        }
+      })
+
+    // dispatch(importNft(data))
+    //   .unwrap()
+    //   .then(() => dispatch(setSuccess("NFT imported Successfully!")))
+  }
 
   return (
     <>
