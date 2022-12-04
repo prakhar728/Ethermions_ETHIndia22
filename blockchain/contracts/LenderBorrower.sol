@@ -44,9 +44,9 @@ contract LenderBorrower is ERC721Holder, Ownable {
         uint256 tokenId;
     }
     mapping(uint256 => borrowRequest) public borrowRequests;
-    mapping(address => uint256[]) public requestListByAddress; 
+    mapping(address => uint256[]) public requestListByAddress;
 
-    constructor()  {}
+    constructor() {}
 
     function startBorrowProposal(
         uint256 amount,
@@ -54,9 +54,12 @@ contract LenderBorrower is ERC721Holder, Ownable {
         uint256 repayMentPeriod,
         address nft,
         uint256 tokenId
-    ) public returns(uint256 proposalId){
+    ) public returns (uint256 proposalId) {
         IERC721 currentNft = IERC721(nft);
-        require(currentNft.ownerOf(tokenId)==msg.sender,"Sender is not the owner");
+        require(
+            currentNft.ownerOf(tokenId) == msg.sender,
+            "Sender is not the owner"
+        );
 
         _proposalId.increment();
         borrowRequests[_proposalId.current()] = borrowRequest(
@@ -75,48 +78,94 @@ contract LenderBorrower is ERC721Holder, Ownable {
         requestListByAddress[msg.sender].push(_proposalId.current());
         return _proposalId.current();
     }
-    function getTheProposals() external view returns(borrowRequest[] memory allBorrowRequests){
-        uint256[] memory temporaryProposalId = requestListByAddress[msg.sender];
-        borrowRequest[] memory _temporaryProposalList;
-        for(uint256 i = 0; i < temporaryProposalId.length; ++i ){
-            _temporaryProposalList[i]=borrowRequests[temporaryProposalId[i]];
-        }
-        return _temporaryProposalList;
+
+    function returnCurrentProposalId()
+        external
+        view
+        returns (uint256 currentProposal)
+    {
+        return _proposalId.current();
     }
 
-    function returnCurrentProposalId() external view returns(uint256 currentProposal){
-    return _proposalId.current();
-    }
-    
-    function  lendToProposal(uint256 _requiredProposalId ) public payable{
-        require(msg.value>= borrowRequests[_requiredProposalId].amount,"Not enough amount lent");
+    function lendToProposal(uint256 _requiredProposalId) public payable {
+        require(
+            msg.value >= borrowRequests[_requiredProposalId].amount,
+            "Not enough amount lent"
+        );
+        require(
+            borrowRequests[_requiredProposalId].currentStatus ==
+                Status.requested
+        );
         borrowRequests[_requiredProposalId].timeTaken = block.timestamp;
         borrowRequests[_requiredProposalId].lender = msg.sender;
-        payable(borrowRequests[_requiredProposalId].borrower).transfer(msg.value);
+        borrowRequests[_requiredProposalId].currentStatus = Status.notSettled;
+        (bool sent, ) = borrowRequests[_requiredProposalId].borrower.call{
+            value: msg.value
+        }("");
+        require(sent, "Failed to send Ether");
     }
 
-    function withDrawProposal(uint256 _requiredProposalId) external{
-        require(msg.sender==borrowRequests[_requiredProposalId].borrower,"Only the person who made the request can withdraw it");
-        require(borrowRequests[_requiredProposalId].currentStatus==Status.requested,"The current status of Proposal doesn't allow this");
+    function withDrawProposal(uint256 _requiredProposalId) external {
+        require(
+            msg.sender == borrowRequests[_requiredProposalId].borrower,
+            "Only the person who made the request can withdraw it"
+        );
+        require(
+            borrowRequests[_requiredProposalId].currentStatus ==
+                Status.requested,
+            "The current status of Proposal doesn't allow this"
+        );
         borrowRequests[_requiredProposalId].currentStatus = Status.withDrawn;
-        IERC721(address(borrowRequests[_requiredProposalId].nft)).safeTransferFrom(address(this),borrowRequests[_requiredProposalId].lender,borrowRequests[_requiredProposalId].tokenId);
-
+        IERC721(address(borrowRequests[_requiredProposalId].nft))
+            .safeTransferFrom(
+                address(this),
+                borrowRequests[_requiredProposalId].borrower,
+                borrowRequests[_requiredProposalId].tokenId
+            );
     }
 
-    function claimNft(uint256 _requiredProposalId) external{
-        require(msg.sender==borrowRequests[_requiredProposalId].lender,"Only the person who lent the money can claim this");
-       IERC721(borrowRequests[_requiredProposalId].nft).safeTransferFrom(address(this),msg.sender,borrowRequests[_requiredProposalId].tokenId);
-       borrowRequests[_requiredProposalId].currentStatus = Status.Settled2;
+    function claimNft(uint256 _requiredProposalId) external {
+        require(
+            msg.sender == borrowRequests[_requiredProposalId].lender,
+            "Only the person who lent the money can claim this"
+        );
+        // require(
+        //     (block.timestamp - borrowRequests[_requiredProposalId].timeTaken) >
+        //         borrowRequests[_requiredProposalId].repayMentPeriod * 86400,
+        //     "The required time has not elapsed"
+        // );
+        IERC721(borrowRequests[_requiredProposalId].nft).safeTransferFrom(
+            address(this),
+            msg.sender,
+            borrowRequests[_requiredProposalId].tokenId
+        );
+        borrowRequests[_requiredProposalId].currentStatus = Status.Settled2;
     }
-    function calculateAmountDue(uint256 _requiredProposalId) internal view returns(uint256 _amountDue){
-        uint256  principalAmount = borrowRequests[_requiredProposalId].amount;
+
+    function calculateAmountDue(
+        uint256 _requiredProposalId
+    ) public view returns (uint256 _amountDue) {
+        uint256 principalAmount = borrowRequests[_requiredProposalId].amount;
         uint256 interest = borrowRequests[_requiredProposalId].interestRate;
-        uint256 amountDue = (1+interest)/100 * principalAmount;
+        uint256 amountDue = ((1 + interest) / 100) *
+            principalAmount *
+            ((block.timestamp - borrowRequests[_requiredProposalId].timeTaken) /
+                (86400 * 365));
         return amountDue;
     }
-    function repayAll(uint256 _requiredProposalId) external payable{
-        (bool sent,) = borrowRequests[_requiredProposalId].lender.call{value: msg.value}("");
+
+    function repayAll(uint256 _requiredProposalId) external payable {
+        require(
+            msg.value >= calculateAmountDue(_requiredProposalId),
+            "You need to repay the full amount"
+        );
+        require(
+            msg.sender == borrowRequests[_requiredProposalId].borrower,
+            "Only the borrower can repay this"
+        );
+        (bool sent, ) = borrowRequests[_requiredProposalId].lender.call{
+            value: msg.value
+        }("");
         require(sent, "Failed to send Ether");
-        
     }
 }

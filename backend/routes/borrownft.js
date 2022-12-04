@@ -23,6 +23,8 @@ router.post(
         $and: [{ token_id }, { contract_address }],
       });
 
+      console.log(mynft)
+
       if (!mynft) {
         return res.status(400).send({ message: "NFT not found" });
       }
@@ -35,12 +37,14 @@ router.post(
         });
       }
 
-      await nftwallet.findOneAndUpdate(
+      const newnft=await nftwallet.findOneAndUpdate(
         {
           $and: [{ token_id }, { contract_address }],
         },
         { status: "borrowed", roi, repay, amount }
       );
+
+      console.log(newnft)
 
       await borrowedNft.create({
         title,
