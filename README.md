@@ -2,17 +2,25 @@
 
 # 🧭 Table of contents
 
-- [Introduction](#Introduction)
-- [🚀 Quick Start](#Quick-Start)
-- [What this App Uses](#What-this-App-uses)
-	- [`Frontend`](#Frontend)
-	- [`Backend`](#Backend)
-	- [`Blockchain`](#Blockchain)
-	
-	- [`Database`](#Databasse)
-- [Sponsors Used](#sponsors-used-for-making-zapp)
-- [Where is this Deployed](#Where-is-this-App-deployed)
-- [Future Plans](#Future-Aspirations-for-this-App)
+- [Zapp](#zapp)
+- [🧭 Table of contents](#-table-of-contents)
+- [Introduction](#introduction)
+- [Quick Start for frontend](#quick-start-for-frontend)
+- [Quick Start for Backend](#quick-start-for-backend)
+- [What this App uses](#what-this-app-uses)
+    - [This App has four main parts](#this-app-has-four-main-parts)
+- [Frontend](#frontend)
+- [Backend](#backend)
+- [Blockchain](#blockchain)
+- [Database](#database)
+- [Sponsors Used for making ZaPP](#sponsors-used-for-making-zapp)
+  - [Valist :](#valist-)
+  - [Push :](#push-)
+  - [ENS :](#ens-)
+  - [IPFS :](#ipfs-)
+  - [Polygon :](#polygon-)
+- [Where is this App deployed](#where-is-this-app-deployed)
+- [Future Aspirations for this App](#future-aspirations-for-this-app)
 
 
 
@@ -77,6 +85,7 @@ npm start
 # Frontend
 
 We are using Next.JS for rendering the frontend of the project. The frontend is integrated with both the backend and blockchain.
+We are using Redux-thunk along in javascript to make our webapp modular and easy to use. 
 
 # Backend
 
@@ -96,7 +105,10 @@ This App Uses Some Node_Modules in order to work properly which includes:
 
 # Blockchain
 
-
+We chose polygon as the primary chain to deploy the smart contacts. This was due to polygons low gas fees and high supportibility. 
+The Contract Address are:
+1. Zapp nft : [0x8256c9a4fe745DFc7b37D2c1B7A3a0475F04C26f](https://mumbai.polygonscan.com/address/0x8256c9a4fe745DFc7b37D2c1B7A3a0475F04C26f#code)
+2. LenderBorrower: [0xf95976D53252Fef1a77375046f551f6481f627E7](https://mumbai.polygonscan.com/address/0xf95976D53252Fef1a77375046f551f6481f627E7#code)
 # Database
 
 We are using `MongoDB` for all its database needs. This App uses DB to:
