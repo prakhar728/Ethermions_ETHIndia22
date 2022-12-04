@@ -41,9 +41,7 @@ function Featuring() {
             Zapp aims to solve the problem of underlying assets that gain you no money. People often hold NFTs that grow at a very small rate over time, well what if they could get some loan against it and repay it back - making use of the money for instantaneous purposes as well as the value of NFT grows while being locked too.
             </p>
             <p className={styles.simple}>
-              No matter if you loan to earn or loan to own, make sure you
-              connect to the ZaPP expert lender community and deeply understand
-              the NFTs you lend against.
+               ZIs your NFT earning you money while sitting? No right? Well, handover it over to us * it's an offer you can't refuse *. Choose to either get loans against your NFT or stake it.  
             </p>
           </div>
         </div>
