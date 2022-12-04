@@ -7,7 +7,11 @@ function Featuring() {
     <div className={styles.fContainer}>
       <div className={styles.bmain}>
         <div className="images">
-          <LottieCard src="https://assets5.lottiefiles.com/packages/lf20_EVZQfwJW6o.json" />
+          <LottieCard
+            src="https://assets5.lottiefiles.com/packages/lf20_EVZQfwJW6o.json"
+            style={{ zIndex: "5px" }}
+            className="lottie"
+          />
         </div>
         <div className={styles.content}>
           <h3>Borrows</h3>
@@ -58,7 +62,11 @@ function Featuring() {
           </div>
         </div>
         <div className={styles.images}>
-          <LottieCard src="https://assets5.lottiefiles.com/packages/lf20_3ysnvbux.json" />
+          <LottieCard
+            src="https://assets5.lottiefiles.com/packages/lf20_3ysnvbux.json"
+            style={{ zIndex: "5px" }}
+            className="lottie"
+          />
         </div>
       </div>
     </div>
