@@ -9,6 +9,7 @@ import Loader from "../Loader"
 import TextInput from "../form/TextInput"
 import { borrowNft } from "../../redux/borrow"
 import { setSuccess } from "../../redux/success"
+import { setError } from "../../redux/error"
 import axios from "axios"
 import { ethers } from "ethers"
 
@@ -96,6 +97,8 @@ const Card = ({
             .then((response) => {
               setIsModal(!isModal)
               dispatch(setSuccess("NFT listed Successfully!"))
+            }).catch((err)=>{
+              dispatch(setError("Request Failed, Please try again."))
             })
         } catch (err) {
           console.log("Failed to start a proposal", err)
