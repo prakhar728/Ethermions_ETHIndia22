@@ -10,6 +10,10 @@ router.post(
       const { token_id, title, description, image } = req.body;
       const { contract_address, wallet_address } = req.params;
 
+      if (!title) return res.json({ message: "Title is required" });
+      if (!description) return res.json({ message: "Description is required" });
+      if (!image) return res.json({ message: "Image Link is required" });
+
       if (!wallet_address)
         return res.json({ message: "Wallet address Not found" });
       if (!contract_address)

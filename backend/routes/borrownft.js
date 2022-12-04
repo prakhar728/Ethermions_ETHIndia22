@@ -11,8 +11,6 @@ router.post(
         return res.status(400).json({ message: "Rate of interest not found" });
       if (!repay)
         return res.status(400).json({ message: "Repayment time not found" });
-      if (!amount)
-        return res.status(400).json({ message: "Repayment amount not found" });
       const { wallet_address, contract_address } = req.params;
       if (!wallet_address)
         return res.json({ message: "Wallet address Not found" });
@@ -20,7 +18,7 @@ router.post(
         return res.json({ message: "Contract address Not found" });
 
       const mynft = await nftwallet.findOne({
-        $and: [{ wallet_address }, { contract_address }],
+        $and: [{ token_id }, { contract_address }],
       });
 
       if (!mynft) {
