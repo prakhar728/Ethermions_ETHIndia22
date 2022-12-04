@@ -6,7 +6,7 @@ router.post(
   "/:contract_address/:wallet_address/borrownft",
   async (req, res) => {
     try {
-      const { roi, repay, amount } = req.body;
+      const { roi, repay, token_id } = req.body;
       if (!roi)
         return res.status(400).json({ message: "Rate of interest not found" });
       if (!repay)
@@ -27,7 +27,7 @@ router.post(
         return res.status(400).send({ message: "NFT not found" });
       }
 
-      const { title, description, token_id, status, image } = mynft;
+      const { title, description, status, image } = mynft;
 
       if (status != "open") {
         return res.status(400).send({
@@ -37,7 +37,7 @@ router.post(
 
       await nftwallet.findOneAndUpdate(
         {
-          $and: [{ wallet_address }, { contract_address }],
+          $and: [{ token_id }, { contract_address }],
         },
         { status: "borrowed", roi, repay, amount }
       );
