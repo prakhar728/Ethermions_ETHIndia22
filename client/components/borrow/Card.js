@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import apenft from "../../assets/images/apenft.jpeg"
-import { FaEthereum } from "react-icons/fa"
 import Image from "next/image"
 import Modal from "../Modal"
 import { useDispatch, useSelector } from "react-redux"
@@ -147,13 +146,12 @@ const Card = ({
           />
         </Modal>
       ) : null}
-      <div className="nftcardborrow">
+      <div className="nftcardborrownew">
         <div className="nftcardHead">
           <div>
             <h3>{title ? title : "NA"}</h3>
             <h5>#{token_id ? token_id : "NA"}</h5>
           </div>
-          <FaEthereum color="#9925ad" size={25} />
         </div>
         <Image
           src={image ? image : apenft}
