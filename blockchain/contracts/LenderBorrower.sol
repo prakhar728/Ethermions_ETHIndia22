@@ -129,11 +129,11 @@ contract LenderBorrower is ERC721Holder, Ownable {
             msg.sender == borrowRequests[_requiredProposalId].lender,
             "Only the person who lent the money can claim this"
         );
-        require(
-            (block.timestamp - borrowRequests[_requiredProposalId].timeTaken) >
-                borrowRequests[_requiredProposalId].repayMentPeriod * 86400,
-            "The required time has not elapsed"
-        );
+        // require(
+        //     (block.timestamp - borrowRequests[_requiredProposalId].timeTaken) >
+        //         borrowRequests[_requiredProposalId].repayMentPeriod * 86400,
+        //     "The required time has not elapsed"
+        // );
         IERC721(borrowRequests[_requiredProposalId].nft).safeTransferFrom(
             address(this),
             msg.sender,
