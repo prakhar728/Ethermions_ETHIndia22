@@ -7,28 +7,28 @@ import { getBorrowedNfts, selectNft } from "../../redux/lend";
 import styles from "../../styles/nftstack.module.css";
 import Loader from "../../components/Loader";
 import { MdNotifications } from "react-icons/md";
+import { notify } from "../../components/Notification";
 
 const data = {
   sno: "8071",
   name: "Bored ape",
   floorPrice: "61.39",
-  valuation: "67.79"
-}
+  valuation: "67.79",
+};
 
 const index = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleClick = (item) => {
-    dispatch(selectNft(item))
-  }
+    dispatch(selectNft(item));
+  };
 
-  const { walletAddress, instances } = useSelector((state) => state.navbar)
+  const { walletAddress, instances } = useSelector((state) => state.navbar);
   useEffect(() => {
-    console.log(walletAddress)
+    console.log(walletAddress);
     // getAllNfts()
-    dispatch(getBorrowedNfts())
-
-  }, [])
-  const mynfts = useSelector((state) => state?.lend?.mynfts)
+    dispatch(getBorrowedNfts());
+  }, []);
+  const mynfts = useSelector((state) => state?.lend?.mynfts);
 
   return (
     <Layout>
@@ -36,7 +36,6 @@ const index = () => {
         <h1>Lend</h1>
         <h3>Offer loans to other users on their Non-Fungible Tokens</h3>
         <div className="lendContainer">
-          
           {mynfts ? (
             mynfts.map((item, i) => {
               return (
@@ -48,7 +47,7 @@ const index = () => {
                     <NftCard data={item} />
                   </Link>
                 </div>
-              )
+              );
             })
           ) : (
             <div className={styles.vaultItem}>
@@ -56,10 +55,10 @@ const index = () => {
             </div>
           )}
         </div>
-        <MdNotifications className="notify" size={30} />
+        <MdNotifications className="notify" size={30} onClick={notify} />
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default index
+export default index;

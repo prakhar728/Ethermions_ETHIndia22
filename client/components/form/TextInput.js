@@ -8,6 +8,7 @@ const TextInput = ({
   handleChange,
   placeholder,
   titleDescription,
+  disabled,
 }) => {
   return (
     <>
@@ -20,6 +21,7 @@ const TextInput = ({
           value={value}
           onChange={(e) => handleChange(e)}
           placeholder={placeholder}
+          disabled={disabled ? disabled : false}
         />
       </label>
     </>

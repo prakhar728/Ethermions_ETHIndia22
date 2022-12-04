@@ -119,7 +119,10 @@ const Videobg = () => {
           </Link>
         </div>
       </div>
-      <LottieCard src="https://assets8.lottiefiles.com/private_files/lf30_iyicd2xy.json" />
+      <LottieCard
+        src="https://assets8.lottiefiles.com/private_files/lf30_iyicd2xy.json"
+        className="videoImg"
+      />
     </div>
   );
 };
