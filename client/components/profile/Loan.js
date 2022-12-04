@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from "react";
-import Card from "../../components/profile/ProfileCard";
-import { getListedForLoans, getActiveLoans } from "../../redux/profile";
-import { useDispatch, useSelector } from "react-redux";
-import Loader from "../Loader";
-import Error from "../Error";
+import React, { useState, useEffect } from "react"
+import Card from "../../components/profile/ProfileCard"
+import { getListedForLoans, getActiveLoans } from "../../redux/profile"
+import { useDispatch, useSelector } from "react-redux"
+import Loader from "../Loader"
+import Error from "../Error"
+import LoanCard from "./LoanCard"
 
 function Loan() {
-  const dispatch = useDispatch();
-  const [tab, setTab] = useState("Listed");
+  const dispatch = useDispatch()
+  const [tab, setTab] = useState("Listed")
 
   const { loading, listedForLoans, activeLoans } = useSelector(
     (state) => state.profile
-  );
+  )
+  const { walletAddress, instances } = useSelector((state) => state.navbar)
 
   useEffect(() => {
-    dispatch(getListedForLoans());
-    dispatch(getActiveLoans());
-  }, []);
+    dispatch(getListedForLoans())
+    dispatch(getActiveLoans())
+  }, [])
 
   return (
     <>
@@ -54,18 +56,11 @@ function Loan() {
             loading ? (
               <Loader />
             ) : listedForLoans ? (
-              listedForLoans.nft?.map((item,i) => (
-                <div className="nftComponent" key={1}>
-                  <Card
-                    lender_address={item.lender_address}
-                    borrower_address={item.borrower_address}
-                    amount={item.amount}
-                    contract_address={item.contract_address}
-                    repay={item.repay}
-                    roi={item.roi}
-                    description={item.description}
-                    title={item.title}
-                    token_id={item.token_id}
+              listedForLoans?.map((item, i) => (
+                <div className="nftComponent" key={i}>
+                  <LoanCard
+                    item={item}
+                    active={false}
                   />
                 </div>
               ))
@@ -75,18 +70,11 @@ function Loan() {
             loading ? (
               <Loader />
             ) : activeLoans ? (
-              activeLoans?.map((item,i) => (
+              activeLoans?.map((item, i) => (
                 <div className="nftComponent" key={i}>
-                  <Card
-                    lender_address={item.lender_address}
-                    borrower_address={item.borrower_address}
-                    amount={item.amount}
-                    contract_address={item.contract_address}
-                    repay={item.repay}
-                    roi={item.roi}
-                    description={item.description}
-                    title={item.title}
-                    token_id={item.token_id}
+                  <LoanCard
+                    item={item}
+                    active={true}
                   />
                 </div>
               ))
@@ -95,7 +83,7 @@ function Loan() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Loan;
+export default Loan

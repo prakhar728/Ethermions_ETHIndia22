@@ -3,8 +3,8 @@ import {
   createAsyncThunk,
   isRejected,
   isPending,
-  isAnyOf,
-} from "@reduxjs/toolkit";
+  isAnyOf
+} from "@reduxjs/toolkit"
 
 export const getEnsName = createAsyncThunk(
   "ens/getEnsName",
@@ -12,51 +12,54 @@ export const getEnsName = createAsyncThunk(
     try {
       //   const state = thunkAPI.getState()
       //   console.log("signer in ens", state)
-      var name = await provider.lookupAddress(address);
+      var name = await provider.lookupAddress(address)
       // 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
-      var image=await provider.getAvatar(address);
+      var image = await provider.getAvatar(address)
       console.log(image)
-      const data={
-        name,image
+      const data = {
+        name,
+        image
       }
-      return data;
+      return data
     } catch (err) {
-      console.log("ens error", err);
+      console.log("ens error", err)
     }
   }
-);
+)
 
 export const ensSlice = createSlice({
   name: "ens",
   initialState: {
     ensName: null,
-    ensImg:null,
+    ensImg: null,
+    loading: false
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getEnsName.fulfilled, (state, action) => {
-        state.ensName = action.payload?.name;
-        state.ensImg=action.payload?.image
+        state.ensName = action.payload?.name
+        state.ensImg = action.payload?.image
+        state.loading = false
       })
       .addCase(getEnsName.pending, (state) => {
         // global error handle reducer
-        state.loading = true;
-        state.error = null;
+        state.loading = true
+        state.error = null
       })
       .addCase(getEnsName.rejected, (state, action) => {
         // global error handle reducer
-        state.loading = false;
-        state.error = action.payload;
-      });
+        state.loading = false
+        state.error = action.payload
+      })
     // .addMatcher(isRejected, (state, action) => {
     //   // global error handle reducer
     //   state.error = action.payload
     //   state.loading = false
     // })
-  },
-});
+  }
+})
 
 // export const { getMyNfts, importNft } = borrowSlice.actions
 
-export default ensSlice.reducer;
+export default ensSlice.reducer
