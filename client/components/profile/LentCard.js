@@ -1,7 +1,4 @@
 import React from "react"
-import apenft from "../../assets/images/apenft.jpeg"
-import { FaEthereum } from "react-icons/fa"
-import Image from "next/image"
 import Link from "next/link"
 import { ethers } from "ethers"
 import { useSelector } from "react-redux"

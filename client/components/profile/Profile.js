@@ -8,6 +8,7 @@ import * as ethers from "ethers";
 import { useState } from "react";
 import Loader from "../Loader";
 import { useSelector } from "react-redux";
+import apenft from "../../assets/images/apenft.jpeg";
 
 function Profile() {
   const { address } = useAccount();
@@ -20,7 +21,7 @@ function Profile() {
     <>
       <div className="detailContainer">
           <Image
-            src={ensImg}
+            src={ensImg?ensImg:apenft}
             alt=""
             className="profileImage"
             width={200}
