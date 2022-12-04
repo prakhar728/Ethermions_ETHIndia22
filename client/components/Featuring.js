@@ -44,13 +44,13 @@ function Featuring() {
           </div>
           <div>
             <p className={styles.simple}>
-              Browse over 150 NFT collections (including CryptoPunks, Bored
+              Browse NFT collections or Mint NFTs for the collection(including
               Apes, Art Blocks, Mutant Apes, VeeFriends, Autoglyphs, and most
               other bluechips) and offer loans on the assets you’re happy to
               back.
             </p>
             <p className={styles.simple}>
-              Best case, you earn a juicy APR. Worst case, the borrower defaults
+              Best case, you earn an APR. Worst case, the borrower defaults
               and you walk away with an NFT at a hefty discount. Some lenders
               even specialize in loan-to-own strategies.
             </p>
