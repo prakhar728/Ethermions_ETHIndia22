@@ -13,6 +13,6 @@ module.exports = {
         hostname: "ipfs.io",
         port: ""
       }
-    ]
+    ]  
   }
 }
