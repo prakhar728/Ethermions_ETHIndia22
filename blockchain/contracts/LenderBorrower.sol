@@ -119,7 +119,7 @@ contract LenderBorrower is ERC721Holder, Ownable {
         IERC721(address(borrowRequests[_requiredProposalId].nft))
             .safeTransferFrom(
                 address(this),
-                borrowRequests[_requiredProposalId].lender,
+                borrowRequests[_requiredProposalId].borrower,
                 borrowRequests[_requiredProposalId].tokenId
             );
     }
