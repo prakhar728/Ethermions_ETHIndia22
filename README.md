@@ -10,6 +10,7 @@
 	- [`Blockchain`](#Blockchain)
 	
 	- [`Database`](#Databasse)
+- [Sponsors Used](#sponsors-used-for-making-zapp)
 - [Where is this Deployed](#Where-is-this-App-deployed)
 - [Future Plans](#Future-Aspirations-for-this-App)
 
@@ -44,7 +45,8 @@ npm start
 
 # Quick Start for Backend
 
-📄 Clone or fork this repo :`https://github.com/prakhar728/Ethermions_ETHIndia22`:
+📄 Clone or fork this repo :
+`https://github.com/prakhar728/Ethermions_ETHIndia22`:
 
 ```sh
 git clone https://github.com/prakhar728/Ethermions_ETHIndia22
@@ -74,7 +76,7 @@ npm start
 
 # Frontend
 
-This App uses Next.JS for rendering the frontend of the project. The frontend is integrated with both the backend and blockchain.
+We are using Next.JS for rendering the frontend of the project. The frontend is integrated with both the backend and blockchain.
 
 # Backend
 
@@ -97,26 +99,40 @@ This App Uses Some Node_Modules in order to work properly which includes:
 
 # Database
 
-This app uses `MongoDB` for all its database needs. This App uses DB to:
+We are using `MongoDB` for all its database needs. This App uses DB to:
  
  - Store NFTs that are open to borrow.
  - Storing and updating the status of an NFT after transaction
+
+# Sponsors Used for making ZaPP
+## Valist : 
+We are using Valist for deploying our frontend part of the website. Valist makes our web3 dapp truly decentralized by uploading the whole website to IPFS. The excellent support for Nextjs and various github integrations really helped us to deploy the website with ease with little help from the team.
+## Push :
+ Using Push for chat and notifications messages. Gasless notification is exactly what we were looking for. The borrowers can now be notified whenever a a user lends them money or the lender claims the NFT that was locked in as collateral. A service like no other.
+## ENS :
+Using ENS for displaying profile image and name instead of the address. Instead of showing the whole 42 character long address we display the name associated with it. People with avatars have a cherry on the top. 
+## IPFS : 
+The Decentralized Storage that goes hand in hand wherever NFTs are involved. We used web3storage and it's fast feature to store images on top of the IPFS network. The easy to integrate feature made it even easier than some cloud services. The web3link feature helped with the fast retrieval as well, making it an ideal choice for web3 dapps.
+## Polygon : 
+The best L-2 Solution outthere. Polygon was our first choice to deploy the smart contract wherein the contracts were directy deployed to the testnet for testing and no local host testing took place. Here's the Contract address of the contract's used here:
+1. ZappNFT Contract - 
+2. LenderBorrower Contract -
 
 # Where is this App deployed
 
 `Frontend` 
 - The frontend of this app is deployed on :
-https://EthermionsETHIndia22.prakharojha.repl.co
-
-- and on Valist on:
 https://bafybeid6gumvub2ostsl7q7ijle35g4uwyxa5vecott5gkqb2asuax226e.ipfs.w3s.link/
 
 `Backend`
-- The Backend of this app is deployed on https://ether-meons.onrender.com
+- The Backend of this app is deployed on https://EthermionsETHIndia22-1.prakharojha.repl.co
+
 
 # Future Aspirations for this App
 
 There are some features which can be added in future:
- - NFT Upgradation from static to Dynamic.
- - Dynamic NFT Marketplace.
+ - The project doesn't stop here. We aim to take it further and realized during the hackathon hours that we weren't able to explore all the sponsors. 
+ Some Sponsors that we would definitely make use of in the future are :
+ 1. Revise - Dynamic NFTs, make NFTs that upgrade if staked for a long period of time over our platform.
+ 2. Hyperlane - Allow cross-chain nft staking and locking mechanism.
  

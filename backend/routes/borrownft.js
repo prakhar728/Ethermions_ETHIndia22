@@ -11,6 +11,8 @@ router.post(
         return res.status(400).json({ message: "Rate of interest not found" });
       if (!repay)
         return res.status(400).json({ message: "Repayment time not found" });
+      if (!amount)
+        return res.status(400).json({ message: "Repayment Amount not found" });
       const { wallet_address, contract_address } = req.params;
       if (!wallet_address)
         return res.json({ message: "Wallet address Not found" });
