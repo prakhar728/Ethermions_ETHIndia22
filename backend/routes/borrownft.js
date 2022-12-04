@@ -6,13 +6,11 @@ router.post(
   "/:contract_address/:wallet_address/borrownft",
   async (req, res) => {
     try {
-      const { roi, repay, amount } = req.body;
+      const { roi, repay, token_id,amount } = req.body;
       if (!roi)
         return res.status(400).json({ message: "Rate of interest not found" });
       if (!repay)
         return res.status(400).json({ message: "Repayment time not found" });
-      if (!amount)
-        return res.status(400).json({ message: "Repayment amount not found" });
       const { wallet_address, contract_address } = req.params;
       if (!wallet_address)
         return res.json({ message: "Wallet address Not found" });
@@ -20,14 +18,16 @@ router.post(
         return res.json({ message: "Contract address Not found" });
 
       const mynft = await nftwallet.findOne({
-        $and: [{ wallet_address }, { contract_address }],
+        $and: [{ token_id }, { contract_address }],
       });
+
+      console.log(mynft)
 
       if (!mynft) {
         return res.status(400).send({ message: "NFT not found" });
       }
 
-      const { title, description, token_id, status, image } = mynft;
+      const { title, description, status, image } = mynft;
 
       if (status != "open") {
         return res.status(400).send({
@@ -35,12 +35,14 @@ router.post(
         });
       }
 
-      await nftwallet.findOneAndUpdate(
+      const newnft=await nftwallet.findOneAndUpdate(
         {
-          $and: [{ wallet_address }, { contract_address }],
+          $and: [{ token_id }, { contract_address }],
         },
         { status: "borrowed", roi, repay, amount }
       );
+
+      console.log(newnft)
 
       await borrowedNft.create({
         title,

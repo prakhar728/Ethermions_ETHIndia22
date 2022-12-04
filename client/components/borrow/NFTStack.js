@@ -15,8 +15,8 @@ import axios from "axios"
 import { ethers } from "ethers"
 
 const NFTStack = () => {
-  const { address, isConnected } = useAccount();
-  const [isModal, setIsModal] = useState(false);
+  const { address, isConnected } = useAccount()
+  const [isModal, setIsModal] = useState(false)
   const [data, setData] = useState({
     contractAddress: "",
     tokenId: ""
@@ -27,16 +27,16 @@ const NFTStack = () => {
   const { walletAddress } = useSelector((state) => state.navbar)
   console.log(nftList)
   const closeModal = () => {
-    setIsModal(!isModal);
-  };
+    setIsModal(!isModal)
+  }
 
   const handleChange = (e) => {
     setData({
       ...data,
-      [e.target.name]: e.target.value,
-    });
-    console.log(data);
-  };
+      [e.target.name]: e.target.value
+    })
+    console.log(data)
+  }
 
   const onSubmit = () => {
     console.log("submitted", data)
@@ -72,7 +72,7 @@ const NFTStack = () => {
               .post(
                 `${process.env.API_DOMAIN}/${data.contractAddress}/${walletAddress}/importNft`,
                 {
-                  title: res.data.title,
+                  title: res.data.name,
                   description: res.data.description,
                   image: res.data.image,
                   token_id: data.tokenId
@@ -159,7 +159,7 @@ const NFTStack = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default NFTStack;
+export default NFTStack
