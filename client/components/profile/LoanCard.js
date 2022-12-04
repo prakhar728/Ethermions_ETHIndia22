@@ -6,14 +6,8 @@ import { useSelector } from "react-redux"
 const LoanCard = ({ item, active }) => {
   const { walletAddress, instances } = useSelector((state) => state.navbar)
   // console.log(data)
-  const {
-    borrower_address,
-    roi,
-    repay,
-    nftURI,
-    whenBorrowed,
-    proposalid
-  } = item
+  const { borrower_address, roi, repay, nftURI, whenBorrowed, proposalid } =
+    item
   const lendToProposal = async () => {
     console.log("Starting to lend")
     console.log(ethers.utils.parseEther((amount / 1000).toString()))
@@ -24,13 +18,30 @@ const LoanCard = ({ item, active }) => {
     ).wait()
     console.log("Lent")
   }
-  const repayProposal = async()=>{
-  const valueRequired = await instances.calculateAmountDue(proposalid);
-  console.log(valueRequired);
-  await (await instances.repayAll(proposalid,{
-    value:valueRequired
-  })).wait()
+
+  const repayProposal = async () => {
+    const valueRequired = await instances.calculateAmountDue(proposalid)
+    console.log(valueRequired)
+    await (
+      await instances.repayAll(proposalid, {
+        value: valueRequired
+      })
+    ).wait()
   }
+
+  const withdrawProposal = async () => {
+    try {
+      await (
+        await instances.withDrawProposal(proposalid, {
+          gasLimit: 1000000
+        })
+      ).wait()
+      console.log("Withdrawn wuhu!")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="nftcard">
       <div className="nftcardHead">
@@ -51,17 +62,25 @@ const LoanCard = ({ item, active }) => {
           <button className="btn btnSqr nftpricesele">View NFT</button>
         </Link>
 
-        {active?((Date.now() / 1000 - whenBorrowed) / 86400 > repay ? (
-          <button
-            className="btn btnSqr nftpricesele"
-            onClick={lendToProposal}
-            disabled
-          >
-            Loan Defaulted
-          </button>
+        {active ? (
+          (Date.now() / 1000 - whenBorrowed) / 86400 > repay ? (
+            <button
+              className="btn btnSqr nftpricesele"
+              onClick={lendToProposal}
+              disabled
+            >
+              Loan Defaulted
+            </button>
+          ) : (
+            <button className="btn btnSqr" onClick={repayProposal}>
+              Repay Loan
+            </button>
+          )
         ) : (
-          <button className="btn btnSqr" onClick={repayProposal} >Repay Loan</button>
-        )) : null}
+          <button className="btn btnSqr" onClick={withdrawProposal}>
+            Withdraw
+          </button>
+        )}
       </div>
     </div>
   )
