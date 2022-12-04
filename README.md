@@ -131,11 +131,13 @@ The best L-2 Solution outthere. Polygon was our first choice to deploy the smart
 # Where is this App deployed
 
 `Frontend` 
-- The frontend of this app is deployed on :
+- The frontend of this app is deployed on vercel and valis :
+https://ethermions-eth-india22.vercel.app/
 https://bafybeid6gumvub2ostsl7q7ijle35g4uwyxa5vecott5gkqb2asuax226e.ipfs.w3s.link/
 
+
 `Backend`
-- The Backend of this app is deployed on https://EthermionsETHIndia22-1.prakharojha.repl.co
+- The Backend of this app is deployed on https://ethhackathonserver.zaidbhimala.repl.co/
 
 
 # Future Aspirations for this App
