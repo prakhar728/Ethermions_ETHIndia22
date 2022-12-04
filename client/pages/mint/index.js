@@ -168,6 +168,7 @@ const index = () => {
             value={data.title}
             handleChange={handleChange}
             placeholder="Item Name"
+            disabled={localLoading}
           />
         </div>
         <div>
@@ -179,6 +180,7 @@ const index = () => {
               value={data.description}
               onChange={(e) => handleChange(e)}
               placeholder="Provide detailed description of your item"
+              disabled={localLoading}
             />
           </label>
         </div>

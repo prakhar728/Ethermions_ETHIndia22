@@ -142,3 +142,22 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.notify:hover {
+  color: #9925ad;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .lottie {
+    width: 350px;
+    height: 3350px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .lottie {
+    width: 200px;
+    height: 200px;
+  }
+}
