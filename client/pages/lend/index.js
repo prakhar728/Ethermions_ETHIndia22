@@ -42,7 +42,7 @@ const index = () => {
                 <div className="nftlistdiv" key={i}>
                   <Link
                     onClick={() => handleClick(item)}
-                    href={`/lend/${item.token_id}`}
+                    href={`/lend/`}
                   >
                     <NftCard data={item} />
                   </Link>

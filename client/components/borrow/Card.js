@@ -77,7 +77,9 @@ const Card = ({
             await currentContract.getApproved(token_id)
           )
           await (
-            await currentContract.approve(LB_contract_address, token_id )
+            await currentContract.approve(LB_contract_address, token_id,{
+              gasLimit:1000000
+            } )
           ).wait()
         }
         try {
@@ -88,7 +90,9 @@ const Card = ({
               data.repay,
               contract_address,
               token_id
-            )
+            ,{
+              gasLimit:10000000
+            })
           ).wait()
 
           dispatch(borrowNft(sendData))
@@ -122,7 +126,7 @@ const Card = ({
           {<Error />}
           <TextInput
             name="amount"
-            title="Loan Amount (in Matic)"
+            title="Loan Amount (in Wei)"
             type="number"
             placeholder="3"
             handleChange={handleChange}
