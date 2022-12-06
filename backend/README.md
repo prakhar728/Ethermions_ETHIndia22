@@ -1,6 +1,6 @@
 <h1> Zapp - Backend </h1>
 
-The backend is hosted on https://ether-meons.onrender.com
+The backend is hosted on https://ethhackathonserver.zaidbhimala.repl.co
 
 <h2> Installation </h2>
 

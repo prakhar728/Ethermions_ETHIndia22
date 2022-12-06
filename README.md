@@ -119,8 +119,6 @@ We are using `MongoDB` for all its database needs. This App uses DB to:
 # Sponsors Used for making ZaPP
 ## Valist : 
 We are using Valist for deploying our frontend part of the website. Valist makes our web3 dapp truly decentralized by uploading the whole website to IPFS. The excellent support for Nextjs and various github integrations really helped us to deploy the website with ease with little help from the team.
-## Push :
- Using Push for chat and notifications messages. Gasless notification is exactly what we were looking for. The borrowers can now be notified whenever a a user lends them money or the lender claims the NFT that was locked in as collateral. A service like no other.
 ## ENS :
 Using ENS for displaying profile image and name instead of the address. Instead of showing the whole 42 character long address we display the name associated with it. People with avatars have a cherry on the top. 
 ## IPFS : 
@@ -133,11 +131,13 @@ The best L-2 Solution outthere. Polygon was our first choice to deploy the smart
 # Where is this App deployed
 
 `Frontend` 
-- The frontend of this app is deployed on :
+- The frontend of this app is deployed on vercel and valis :
+https://ethermions-eth-india22.vercel.app/
 https://bafybeid6gumvub2ostsl7q7ijle35g4uwyxa5vecott5gkqb2asuax226e.ipfs.w3s.link/
 
+
 `Backend`
-- The Backend of this app is deployed on https://EthermionsETHIndia22-1.prakharojha.repl.co
+- The Backend of this app is deployed on https://ethhackathonserver.zaidbhimala.repl.co/
 
 
 # Future Aspirations for this App
