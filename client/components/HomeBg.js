@@ -108,7 +108,7 @@ const Videobg = () => {
         }}
       />
       <div className="videoContent">
-        <h1>Decentralized Loan Marketplace for NFTs</h1>
+        <h1>Collaterizing NFTs to give loans</h1>
         <h3>Borrow & Lend against valuable NFT assets.</h3>
         <div className="vidbutton">
           <Link href="/borrow">

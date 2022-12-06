@@ -15,7 +15,7 @@ const NftCard = ({ data }) => {
     console.log(ethers.utils.parseEther((amount / 1000).toString()))
     await (
       await instances.lendToProposal(proposalid, {
-        value: ethers.utils.parseEther((amount / 1000).toString())
+        value: ethers.utils.parseEther((amount).toString())
       })
     ).wait()
     console.log("Lent")
@@ -30,7 +30,7 @@ const NftCard = ({ data }) => {
       </div>
 
       <div className="nftpricesRow">
-        <div className="nftpricesele">{amount} Matic</div>
+        <div className="nftpricesele">{amount} Wei</div>
         <div className="nftpricesele">{roi}% ROI</div>
         <div className="nftpricesele">{repay} Days</div>
       </div>

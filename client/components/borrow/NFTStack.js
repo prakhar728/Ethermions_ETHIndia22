@@ -10,6 +10,7 @@ import { importNft } from "../../redux/borrow"
 import { setSuccess } from "../../redux/success"
 import { useDispatch, useSelector } from "react-redux"
 import Error from "../Error"
+import Success from "../Success"
 import Loader from "../Loader"
 import axios from "axios"
 import { ethers } from "ethers"
@@ -157,6 +158,7 @@ const NFTStack = () => {
             <div>Please Connect your wallet</div>
           )}
         </div>
+        <Success />
       </div>
     </>
   )

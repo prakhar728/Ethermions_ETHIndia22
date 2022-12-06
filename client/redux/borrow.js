@@ -63,7 +63,7 @@ export const borrowNft = createAsyncThunk(
         `${process.env.API_DOMAIN}/${data.contract_address}/${walletAddress}/borrownft`,
         data
       )
-      console.log("response", response)``
+      console.log("response", response)
       return response.data
     } catch (err) {
       // console.log(err)

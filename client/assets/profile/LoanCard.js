@@ -6,7 +6,7 @@ import { useSelector } from "react-redux"
 const LoanCard = ({ item, active }) => {
   const { walletAddress, instances } = useSelector((state) => state.navbar)
   // console.log(data)
-  const { borrower_address, roi, repay, nftURI, whenBorrowed, proposalid } =
+  const { borrower_address, roi, repay, nftURI, whenBorrowed, proposalid,amount } =
     item
   const lendToProposal = async () => {
     console.log("Starting to lend")
@@ -52,7 +52,7 @@ const LoanCard = ({ item, active }) => {
       </div>
 
       <div className="nftpricesRow">
-        <div className="nftpricesele"> Matic</div>
+        <div className="nftpricesele"> {amount}Wei</div>
         <div className="nftpricesele">{roi}% ROI</div>
         <div className="nftpricesele">{repay} Days</div>
       </div>

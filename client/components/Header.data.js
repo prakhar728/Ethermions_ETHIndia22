@@ -61,34 +61,6 @@ export function connectionButton(ensName) {
               return (
                 <div style={{ display: "flex", gap: 12 }}>
                   <button
-                    onClick={openChainModal}
-                    style={{ display: "flex", alignItems: "center" }}
-                    type="button"
-                    className="btn"
-                  >
-                    {chain.hasIcon && (
-                      <div
-                        style={{
-                          background: chain.iconBackground,
-                          width: 15,
-                          height: 15,
-                          borderRadius: 999,
-                          // overflow: "hidden",
-                          marginRight: 4,
-                        }}
-                      >
-                        {chain.iconUrl && (
-                          <img
-                            alt={chain.name ?? "Chain icon"}
-                            src={chain.iconUrl}
-                            style={{ width: "12px", height: "12px" }}
-                          />
-                        )}
-                      </div>
-                    )}
-                    <></>
-                  </button>
-                  <button
                     className="btn"
                     onClick={openAccountModal}
                     type="button"

@@ -33,9 +33,10 @@ export const getListedForLoans = createAsyncThunk(
           currentProposalData[5] == 0
         ) {
           //add to check status too!
+          console.log(BigInt(currentProposalData[1]).toString());
           const data = {
-            borrower_address: currentProposalData[0],
-            // amount: currentProposalData[1].toNumber(),
+            borrower_address: currentProposalData[0], 
+            amount: BigInt(currentProposalData[1]).toString(),
             roi: currentProposalData[2].toNumber(),
             repay: currentProposalData[3].toNumber(),
             proposalid: currentProposalData[4].toNumber(),
@@ -78,7 +79,7 @@ export const getActiveLoans = createAsyncThunk(
           //add to check status too!
           const data = {
             borrower_address: currentProposalData[0],
-            // amount: currentProposalData[1].toNumber(),
+            amount: BigInt(currentProposalData[1]).toString(),
             roi: currentProposalData[2].toNumber(),
             repay: currentProposalData[3].toNumber(),
             proposalid: currentProposalData[4].toNumber(),
