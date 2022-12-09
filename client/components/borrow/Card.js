@@ -76,9 +76,14 @@ const Card = ({
             "han idhar dekh",
             await currentContract.getApproved(token_id)
           )
+          const currentGasPrice = await axios.get("https://gasstation-mainnet.matic.network/v2");
+          console.log(currentGasPrice);
+          let feeData = await signer.getGasPrice();
+          console.log(feeData);
           await (
             await currentContract.approve(LB_contract_address, token_id,{
-              gasLimit:1000000
+              maxPriorityFeePerGas: feeData["maxPriorityFeePerGas"], // Recommended maxPriorityFeePerGas
+              maxFeePerGas: feeData["maxFeePerGas"]
             } )
           ).wait()
         }
