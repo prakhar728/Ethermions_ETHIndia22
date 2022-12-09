@@ -50,9 +50,9 @@ function Featuring() {
               back.
             </p>
             <p className={styles.simple}>
-              Best case, you earn an APR. Worst case, the borrower defaults
-              and you walk away with an NFT at a hefty discount. Some lenders
-              even specialize in loan-to-own strategies.
+              Best case, you earn an APR. Worst case, the borrower defaults and
+              you walk away with an NFT at a hefty discount. Some lenders even
+              specialize in loan-to-own strategies.
             </p>
             <p className={styles.simple}>
               No matter if you loan to earn or loan to own, make sure you
