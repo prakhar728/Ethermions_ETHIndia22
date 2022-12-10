@@ -3,7 +3,7 @@ import { getMyLendings } from "../../redux/profile"
 import { useDispatch, useSelector } from "react-redux"
 import Loader from "../Loader"
 import Error from "../Error"
-import Card from "../profile/ProfileCard"
+import Card from "./ProfileCard"
 import ListCard from './LentCard'
 
 function Lent() {
