@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import apenft from "../../assets/images/apenft.jpeg"
-import { FaEthereum } from "react-icons/fa"
 import Image from "next/image"
 import Modal from "../Modal"
 import { useDispatch, useSelector } from "react-redux"
@@ -9,6 +8,7 @@ import Loader from "../Loader"
 import TextInput from "../form/TextInput"
 import { borrowNft } from "../../redux/borrow"
 import { setSuccess } from "../../redux/success"
+import { setError } from "../../redux/error"
 import axios from "axios"
 import { ethers } from "ethers"
 
@@ -76,8 +76,15 @@ const Card = ({
             "han idhar dekh",
             await currentContract.getApproved(token_id)
           )
+          const currentGasPrice = await axios.get("https://gasstation-mainnet.matic.network/v2");
+          console.log(currentGasPrice);
+          let feeData = await signer.getGasPrice();
+          console.log(feeData);
           await (
-            await currentContract.approve(LB_contract_address, token_id )
+            await currentContract.approve(LB_contract_address, token_id,{
+              maxPriorityFeePerGas: feeData["maxPriorityFeePerGas"], // Recommended maxPriorityFeePerGas
+              maxFeePerGas: feeData["maxFeePerGas"]
+            } )
           ).wait()
         }
         try {
@@ -88,7 +95,9 @@ const Card = ({
               data.repay,
               contract_address,
               token_id
-            )
+            ,{
+              gasLimit:10000000
+            })
           ).wait()
 
           dispatch(borrowNft(sendData))
@@ -96,6 +105,8 @@ const Card = ({
             .then((response) => {
               setIsModal(!isModal)
               dispatch(setSuccess("NFT listed Successfully!"))
+            }).catch((err)=>{
+              dispatch(setError("Request Failed, Please try again."))
             })
         } catch (err) {
           console.log("Failed to start a proposal", err)
@@ -120,7 +131,7 @@ const Card = ({
           {<Error />}
           <TextInput
             name="amount"
-            title="Loan Amount (in Matic)"
+            title="Loan Amount (in Wei)"
             type="number"
             placeholder="3"
             handleChange={handleChange}
@@ -144,13 +155,12 @@ const Card = ({
           />
         </Modal>
       ) : null}
-      <div className="nftcardborrow">
+      <div className="nftcardborrownew">
         <div className="nftcardHead">
           <div>
             <h3>{title ? title : "NA"}</h3>
             <h5>#{token_id ? token_id : "NA"}</h5>
           </div>
-          <FaEthereum color="#9925ad" size={25} />
         </div>
         <Image
           src={image ? image : apenft}

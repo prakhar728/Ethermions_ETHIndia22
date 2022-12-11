@@ -11,6 +11,19 @@
     /* border: 4px solid #000; */
 }
 
+.nftcardborrownew{
+    width: 240px;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(to bottom right, #121112, #232222); 
+    border-radius: 10px;
+    border: 1px solid #565555;
+    /* border: 4px solid #000; */
+}
+
 .ncbcenter{
     display: flex;
     justify-content: center;

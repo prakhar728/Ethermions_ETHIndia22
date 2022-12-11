@@ -14,18 +14,12 @@ function Featuring() {
           />
         </div>
         <div className={styles.content}>
-          <h3>Borrows</h3>
+          <h3>LENDERS</h3>
           <h2 className={styles.colored}>
-            Recieve NFTs with add-on interest & no extra-charges
+          Recieve NFTs with add-on interest & no extra-charges
           </h2>
           <p className={styles.simple}>
-            List your NFT as collateral and get loan offers from our users. Once
-            you accept an offer, you receive MATIC liquidity from the lenders
-            wallet into yours. Your NFT gets transferred into a double-audited
-            escrow smart contract for the loan duration. Repay the loan before
-            it expires, and you get your NFT back. If you default, the lender
-            can foreclose and receive your NFT. There are no auto-liquidations
-            on ZaPP.
+          For the masses that have liquidity/crypto lying around and want to earn some interest over it, we have your back too. Research the NFTs available for collateralizing and give loans against them, who knows you might get a steal for an expensive gift.
           </p>
           <p className={styles.simple}>
             Yes, unlocking value from your NFT is that simple. What are you
@@ -36,20 +30,18 @@ function Featuring() {
       </div>
       <div className={styles.lmain}>
         <div className={styles.content}>
-          <h3>Lends</h3>
+          <h3>Borrowers</h3>
           <div>
             <h2 className={styles.colored}>
-              Get returns or an NFT at a damn good rates
+              Get loans for your NFTs as collateral
             </h2>
           </div>
           <div>
             <p className={styles.simple}>
-              Browse NFT collections or Mint NFTs for the collection(including
-              Apes, Art Blocks, Mutant Apes, VeeFriends, Autoglyphs, and most
-              other bluechips) and offer loans on the assets you’re happy to
-              back.
+            Zapp aims to solve the problem of underlying assets that gain you no money. People often hold NFTs that grow at a very small rate over time, well what if they could get some loan against it and repay it back - making use of the money for instantaneous purposes as well as the value of NFT grows while being locked too.
             </p>
             <p className={styles.simple}>
+<<<<<<< HEAD
               Best case, you earn an APR. Worst case, the borrower defaults and
               you walk away with an NFT at a hefty discount. Some lenders even
               specialize in loan-to-own strategies.
@@ -58,6 +50,9 @@ function Featuring() {
               No matter if you loan to earn or loan to own, make sure you
               connect to the ZaPP expert lender community and deeply understand
               the NFTs you lend against.
+=======
+               ZIs your NFT earning you money while sitting? No right? Well, handover it over to us * it's an offer you can't refuse *. Choose to either get loans against your NFT or stake it.  
+>>>>>>> f3915a5515bc9c20eb4f36038d227a37487e1b22
             </p>
           </div>
         </div>
